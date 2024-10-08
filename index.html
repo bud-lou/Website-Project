@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>repl.it</title>
+    <link href="index.css" rel="stylesheet" type="text/css" />
+    <!--Google Fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Abril Fatface' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Abhaya Libre' rel='stylesheet'>
+    <style>
+      body {
+        background-color: #fffff5;
+        color: black;
+        font-family: 'Abhaya Libre';
+        font-size: 18px;
+        padding-top: 55px;
+      }
+      h1 {
+        text-align: center;
+        font-family: 'Abril Fatface';
+        background-color: rgba(255,82,82,0.75);
+        padding-top: 15px;
+        padding-bottom: 15px;
+      }
+      #navbarPic {
+        width: 41px;
+        height: 35px;
+        display: inline-block;
+      }
+      .navbar {
+        font-family: Times;
+      }
+      .badge {
+        background-color: red;
+      }
+      #logo {
+        width: 409.6px;
+        height: 351.4px;
+        float: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .finalSlide {
+        color: black;
+      }
+      mark {
+        background-color: white;
+      }
+      .info {
+        text-indent: 20px;
+        padding: 25px;
+      }
+      .holiday {
+        border: 3px dotted black;
+        font-size: 15px;
+        text-align: center;
+      }
+      /*Row classes make the columns in rows equal height*/
+      .row {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display:         flex;
+        flex-wrap: wrap;
+      }
+      .row > [class*='col-'] {
+        display: flex;
+        flex-direction: column;
+      }
+      .jumbotron {
+        padding: 10px;
+      }
+      h2 {
+        background-color: rgba(205, 159, 227,0.25);
+      }
+      .aboutUs {
+        background-color: rgba(255,82,82,0.75);
+      }
+    </style>
+  </head>
+  <body>
+    
+    <!--Nav Bar-->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <!--Collapses nav bar when screen is small-->
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">
+            <img id="navbarPic" src="canvas(1).png">
+            <span style="display: inline-block;">Delectably Delicious</span>
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="index.html">Home</a></li>
+            <li class="dropdown">
+              <!--Dropdown in nav bar-->
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Recipes<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="recipes.html">All Recipes</a></li>
+                <li class="divider"></li>
+                <li><a href="recipes.html#original">Original</a></li>
+                <li><a href="recipes.html#modified">Modified</a></li>
+                <li><a href="recipes.html#favorites">Favorites</a></li>
+              </ul>
+            </li>
+            <li><a href="kitchenSup.html">Kitchen Supplies</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a data-toggle="modal" data-target="#myModal">Cart  <span class="glyphicon glyphicon-shopping-cart"></span><span class="badge"><span id="badgeNum"></span></span></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+    <!--Shopping Cart Modal-->
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Shopping Cart</h4>
+          </div>
+          <div class="modal-body">
+            <p><span id="modalText"></span></p>
+            <button type="button" class="btn btn-success" onClick="purchaseItems()">Purchase Items</button>
+            <button type="button" class="btn btn-danger" onClick="clearCart()">Empty Cart</button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    
+    
+    <h1>Delectably Delicious</h1>
+    
+    <br>
+    
+    <!--Carousel-->
+    <div class="container">
+      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2"></li>
+          <li data-target="#myCarousel" data-slide-to="3"></li>
+        </ol>
+    
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+    
+          <div class="item active">
+            <img src="arrozInCup.jpg" alt="Arroz Con Leche" style="width:100%;">
+            <div class="carousel-caption">
+              <h3>Arroz Con Leche</h3>
+              <p>Picture by Danielle Brown</p>
+            </div>
+          </div>
+    
+          <div class="item">
+            <img src="pancakes1.jpg" alt="Pancakes" style="width:100%;">
+            <div class="carousel-caption">
+              <h3>Banana Buttermilk Pancakes</h3>
+              <p>Picture by Danielle Brown</p>
+            </div>
+          </div>
+        
+          <div class="item">
+            <img src="bizcochitos1.jpg" alt="Bizcochitos" style="width:100%;">
+            <div class="carousel-caption">
+              <h3>Bizcochitos</h3>
+              <p>Pictures by Danielle Brown</p>
+            </div>
+          </div>
+          
+          <div class="item">
+            <img src="canvas(1).png" alt="Logo" id="logo">
+            <div class="carousel-caption finalSlide">
+              <h3><mark>Delectably Delicious</mark></h3>
+              <p><mark>Cooking, Baking & Making!</mark></p>
+            </div>
+          </div>
+      
+        </div>
+    
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+          <span class="sr-only">Next</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+    
+    <!--Website Info-->
+    <div class="row" style="margin: 20px;">
+        <div class="col-sm-7 info">
+          <p>Browse through our website to find delicious recipes. We are sharing with you a mix of recipes that were passed down by family members, modified from online recipes and our personal favorites from across the internet. Here you can find both baking and cooking recipes as well as tips. If you ever come across ingredients you don’t have at home, you can purchase them to be picked up immediately at the store from our site. Additionally, you can also browse our wide range of Delectably Delicious<sup>TM</sup> cooking supplies that have been upgraded and styled for maximum efficiency and convenience to meet the high standards our customers deserve.</p>
+        </div>
+        <div class="col-sm-5 holiday">
+          <h3 style="padding-top: 3%;"><strong>Holiday Tip:</strong></h3>
+          <p>After carving our your pumpkins into a <em>spooky</em> design, keep the pumpkin seeds to create a snack. All you have to do is rinse them, boil them in salted water (this way the salt gets on the inside and outside of the seeds), coat them in butter and then roast them in the oven.</p>
+          <p><strong>Enjoy!</strong></p>
+        </div>
+    </div>
+    
+    <div class="container">
+      <div class="jumbotron aboutUs">
+        <h2 style="background-color: transparent"><strong>About Us:</strong></h2>
+        <p style="text-indent: 5%;">Delectably Delicious is a cooking recipe and product brand that is new to the market. We specialize in personal recipes because family is very important to us. Our ancestors and relatives have handed down time honoured traditions that we can guarantee taste amazing. Every recipe is tested out in our very own home kitchen and baked with love. We hope you enjoy!</p>
+      </div>
+    </div>
+    
+    <!--Links to external JavaScript file-->
+    <footer>
+      <script src="cart.js"></script>
+    </footer>
+    
+  </body>
+</html>

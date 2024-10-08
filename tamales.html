@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>repl.it</title>
+    <link href="index.css" rel="stylesheet" type="text/css" />
+    <!--Google Fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Abril Fatface' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Aref Ruqaa' rel='stylesheet'>
+    <style>
+      #navbarPic {
+        width: 41px;
+        height: 35px;
+        display: inline-block; 
+      }
+      .badge {
+        background-color: red;
+      }
+      body {
+        background-color: #fffff5;
+        color: black;
+        font-family: 'Abhaya Libre';
+        font-size: 18px;
+        padding-top: 55px;
+      }
+      #mainImg {
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+        width: 95%;
+        padding-top: 20px;
+      }
+      .jumbotron {
+        background-color: #eee;
+        padding: 0px 25px;
+        text-align: 20px;
+      }
+      h1 {
+        font-family: 'Abril Fatface';
+        padding-bottom: 20px;
+        padding-left: 2.5%;
+        text-align: 0px;
+      }
+      .page-header {
+        width: 95%;
+        margin-right: auto;
+        margin-left: auto;
+      }
+      .list {
+        padding: 5px 15px;
+        text-indent: 20px;
+      }
+      #instructions {
+        padding: 5px 45px;
+      }
+      .glyphicon {
+        color: #646464;
+      }
+      .btn {
+        border: 1px solid #c2c2c2;
+      }
+      .btn-style {
+        background-color: #fffff5;
+        border: none;
+        outline: none !important;
+      }
+      #description {
+        text-indent: 20px;
+        padding: 5px 35px;
+      }
+      .disabled {
+        background-color: white;
+        border: 1px solid #c2c2c2;
+      }
+      .tip {
+        border: 1px solid #eee;
+        padding: 8px;
+      }
+      .enjoy {
+        background-color: rgba(255,82,82,0.75);
+        color: white;
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+        padding-top: 30px;
+        margin-bottom: 0px;
+      }
+      .img-responsive {
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <!--Nav Bar-->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <!--Collapses nav bar when screen is small-->
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">
+            <img id="navbarPic" src="canvas(1).png">
+            <span style="display: inline-block;">Delectably Delicious</span>
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown active">
+              <!--Dropdown in nav bar-->
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Recipes<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="recipes.html">All Recipes</a></li>
+                <li class="divider"></li>
+                <li><a href="recipes.html#original">Original</a></li>
+                <li><a href="recipes.html#modified">Modified</a></li>
+                <li><a href="recipes.html#favorites">Favorites</a></li>
+              </ul>
+            </li>
+            <li><a href="kitchenSup.html">Kitchen Supplies</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a data-toggle="modal" data-target="#myModal">Cart  <span class="glyphicon glyphicon-shopping-cart"></span><span class="badge"><span id="badgeNum"></span></span></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+    <!--Shopping Cart Modal-->
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Shopping Cart</h4>
+          </div>
+          <div class="modal-body">
+            <p><span id="modalText"></span></p>
+            <button type="button" class="btn btn-success" onClick="purchaseItems()">Purchase Items</button>
+            <button type="button" class="btn btn-danger" onClick="location.href='index.html';clearCart()">Empty Cart & Return Home</button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    
+    <div class="jumbotron">
+      <img id="mainImg" src="https://cdn1.bbcode0.com/uploads/2020/11/1/9727b256fcc2385d09b33e91c9c30fb3-full.jpg" alt="Enchiladas">
+      <h1>Pork Tamales</h1> 
+    </div>
+    <p id="description">Tamales are a traditional Mesoamerican recipe that uses masa for dough and a corn husk to wrap it. <strong>Do not eat the corn husk</strong>, it is not edible. This recipe will teach you how to make pork tamales using our original salsa recipe. If you see any ingredients you don't own, just click the plus and it will be added to the cart. Click again to remove. Note that this will purchase a general amount/container of the product and not just the amount set in the ingredients list.</p>    
+    <div class="page-header"></div>
+    
+    
+    <div class="row">
+      <div class="col-sm-8 color">
+        <h3 class="list"><strong>Prep Time: </strong>45 minutes</h3>
+        <div class="list">
+          <h3><strong>Ingredients:</strong></h3>
+          <ul>
+            <li>
+              <span id = "pork"></span> pork shoulder(s) (3.5 <abbr title="pounds">lbs</abbr>)
+              <button type="button" class="btn btn-style" title="Add to cart" id="tamaleCart1" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id = "bayLeaves"></span> bay leaves
+              <button type="button" class="btn btn-style" title="Add to cart" id="tamaleCart2" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id = "kosher"></span> <abbr title="teaspoon(s)">tsp(s)</abbr> of coarse kosher salt (regular salt can be used if necessary)
+              <button type="button" class="btn btn-style" title="Add to cart" id="tamaleCart3" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id = "pepper1"></span>  <abbr title="used at different times in recipe">+</abbr> <span id = "pepper2"></span> shakes of pepper
+              <button type="button" class="btn btn-style" title="Add to cart" id="tamaleCart4" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id = "cumin"></span> dashes of cumin
+              <button type="button" class="btn btn-style" title="Add to cart" id="tamaleCart5" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              1 bag of corn husks
+              <button type="button" class="btn btn-style" title="Add to cart" id="tamaleCart6" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id = "tomatoes"></span> can(s) of italian diced tomatoes
+              <button type="button" class="btn btn-style" title="Add to cart" id="tamaleCart7" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id = "salt1"></span> <abbr title="tablespoon(s)">tbsp(s)</abbr> of salt <abbr title="used at different times in recipe">+</abbr> ~ <span id = "salt2"></span> of salt
+              <button type="button" class="btn btn-style" title="Add to cart" id="tamaleCart8" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id = "garlic"></span> dashe(s) of garlic powder
+              <button type="button" class="btn btn-style" title="Add to cart" id="tamaleCart9" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id = "chilie1"></span>-<span id = "chilie2"></span> dried red chillies (depends on how spicy you want it)
+              <button type="button" class="btn btn-style" title="Add to cart" id="tamaleCart10" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id = "oliveOil"></span> <abbr title="tablespoon(s)">tbsp(s)</abbr> of olive oil
+              <button type="button" class="btn btn-style" title="Add to cart" id="tamaleCart11" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id = "masa"></span> cups of masa (4.41 <abbr title="pounds">lb</abbr> bag = 16 cups)
+              <button type="button" class="btn btn-style" title="Add to cart" id="tamaleCart12" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id = "crisco"></span> cup(s) of crisco
+              <button type="button" class="btn btn-style" title="Add to cart" id="tamaleCart13" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              ~ <span id = "hotWater"></span> cups of hot water
+              <button type="button" class="btn btn-style" title="Add to cart" id="tamaleCart14" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+          </ul>
+        </div>
+        
+        <h3 class="list"><strong>Instructions:</strong></h3>
+        <div id="instructions">
+          <ol>
+            <li><strong>Cooking Meat</strong></li>
+              <ol type="i">
+                <li>Put pork in slow cooker and fill w/ water until meat is just barely submerged (if you fill too much it might boil over)</li>
+                <li>Add bay leaves, kosher salt, <span id="pepperOne"></span> shakes of pepper and cumin</li>
+                <li>Cook on high for <strong>about 5 hours</strong> or on low for <strong>about 7 hours overnight</strong> - pork will be ready when it can easily fall off the bone</li>
+              </ol>
+            <li>Use tongs to pull the pork out and place it in a large bowl</li>
+            <li>Use forks to pull off fat areas and discard them</li>
+            <li>Begin using forks to shred pork by piercing a section with one and stroking the meat into little pieces with the other one, then set aside</li>
+            <li>Fill a sink with hot water and place about <span id="husks"></span> separated corn husks (you might need more or less later on) in the water with a bowl on top to hold them down</li>
+            <li><strong>Make Salsa</strong></li>
+              <ol type="i">
+                <li>Empty can of tomatoes in blender and add <span id="saltTwo"></span> of salt, <span id="pepperTwo"></span> shake(s) of pepper and garlic powder</li>
+                <li>Fill empty tomato can <span id="canWaterAmount"></span> <span id="canFraction"></span><span id="canWhole"></span> with water and add to blender</li>
+                <li>Break the tops of chiles off, rinse our seeds (not necessary to get rid of all seeds) and add to blender</li>
+                <li>Blend for <strong>about 30 seconds</strong> or until mixture is smooth and chunkless, set aside</li>
+              </ol>
+            <li>Heat up a large pan and add the olive oil</li>
+            <li>Once it’s heated up, add the chile and wait for bubbles to appear to indicate that it is boiling</li>
+            <li>Put the meat in the pan and once it starts boiling again, set to a low heat to keep it warm</li>
+            <li><strong>Make the Maseca</strong></li>
+              <ol type="i">
+                <li>In a large bowl add together the masa, crisco and <span id="saltOne"></span> <abbr title="tablespoon(s)">tbsp(s)</abbr> of salt</li>
+                <li>Add 1/4 cup of hot water to the maseca mixture at a time while mixing with your hands until it’s a smooth and firm mixture that doesn’t crumble - this should add up to around <span id="totalHotWater"></span> cups of water being added</li>
+              </ol>
+              <li><strong>Assembling the Tamale</strong></li>
+                <ol type="i">
+                  <li>Take out a corn husks and dry off with a towel</li>
+                  <li>Use your palms to press down a thinish layer of maseca all across the corn husk except for the lower two inches (see in picture below) - you could also use a wet spoon to spread the maseca if you don’t want to use your hand</li>
+                  <li>Take some meat from the pot and place an excessive amount in the center of the tamale</li>
+                  <img class="img-responsive" src="https://cdn1.bbcode0.com/uploads/2020/11/1/a05cb7d46dafcb6ded60c8a7025df31b-full.jpg" alt="spread">
+                  <li>Wrap the tamale by rolling it up and flipping the lowest part of the cornhusk up</li>
+                  <img class="img-responsive" src="https://cdn1.bbcode0.com/uploads/2020/11/1/d96efbeee89036d1df26da44f0b980dc-full.jpg" alt="wrap">
+                  <li>Place the tamale face down in a double broiler </li>
+                  <li>Repeat steps until you run out of meat and as you fill up the broiler, place tamales in a tic tac toe pattern that has two lying vertical and another two lying horizontal on top - make sure that there is always a hole in the center of this pattern</li>
+                </ol>
+              <li><strong>Cooking Tamales</strong></li>
+                <ol type="i">
+                  <li>Fill pot about ⅓ of the way with water</li>
+                  <li>Cook on a medium flame for <strong>about 60-90 minutes</strong> and make sure to have a small (but not too large) opening for the steam to exit from</li>
+                  <li>You can check if they are ready by pulling one out and opening up the corn husk, if the insides stick to the husk, it isn’t ready yet</li>
+                  <li>Once they are ready bring to the sink to drain any left over water and let cool for a while</li>
+                </ol>
+              <li>Enjoy and refrigerate any left overs</li>
+          </ol>
+        </div>
+      </div>
+      
+      <div class="col-sm-3">
+        <h3><strong>Portion Size:</strong></h3>
+        <div class="btn-group">
+          <input class="button btn" type="button" onClick="decreaseServing()" Value="-" />
+          <button type="button" class="btn disabled"><span id=serving></span></button>
+          <input class="button btn" type="button" onClick="increaseServing()" Value="+" />
+        </div>
+        <h6 style="padding-bottom:70px;">*This portion size makes about <span id = "tamales"></span> tamales*</h6>
+      
+        <script>
+          var servingSize = 2;
+          document.getElementById("serving").innerHTML = servingSize;
+          document.getElementById("tamales").innerHTML = "20";
+          document.getElementById("husks").innerHTML = "20";
+          //here is where you say how much water to put in can
+          document.getElementById("canWaterAmount").innerHTML = "1/2";
+          document.getElementById("canFraction").innerHTML = "of the way";
+          document.getElementById("canWhole").innerHTML = "";
+          document.getElementById("pork").innerHTML = "1";
+          document.getElementById("bayLeaves").innerHTML = "2";
+          document.getElementById("kosher").innerHTML = "1/2";
+          document.getElementById("pepper1").innerHTML = "5";
+          document.getElementById("pepper2").innerHTML = "1";
+          document.getElementById("pepperOne").innerHTML = "5";
+          document.getElementById("pepperTwo").innerHTML = "1";
+          document.getElementById("cumin").innerHTML = "4";
+          document.getElementById("tomatoes").innerHTML = "1";
+          document.getElementById("salt1").innerHTML = "1";
+          document.getElementById("salt2").innerHTML = "1/8 tsp";
+          document.getElementById("saltOne").innerHTML = "1";
+          document.getElementById("saltTwo").innerHTML = "1/8 tsp";
+          document.getElementById("garlic").innerHTML = "2";
+          document.getElementById("chilie1").innerHTML = "4";
+          document.getElementById("chilie2").innerHTML = "7";
+          document.getElementById("oliveOil").innerHTML = "1";
+          document.getElementById("masa").innerHTML = "8";
+          document.getElementById("crisco").innerHTML = "1";
+          document.getElementById("hotWater").innerHTML = "2 1/2";
+          document.getElementById("totalHotWater").innerHTML = "2 1/2";
+          
+          
+          function increaseServing() {
+            servingSize++;
+            halfPerServing = servingSize*.5;
+            fourthPerServing = servingSize*.25;
+            eighthPerServing = servingSize*1/16;
+            //Turning decimals into fraction amounts
+            halfDecimal = halfPerServing - Math.floor(halfPerServing); // .5 to 1/2
+            switch(halfDecimal) {
+              case 0.5:
+                halfFraction = "1/2";
+                break
+              default:
+                halfFraction = "";
+            }
+            ingredientAmount = Math.floor(halfPerServing) + " " + halfFraction;
+            //fourth decimals to fractions
+            fourthWhole = Math.floor(fourthPerServing);
+            fourthDecimal = fourthPerServing - fourthWhole;
+            switch(fourthDecimal) {
+              case 0.25:
+                fourthFraction = "1/4";
+                break
+              case 0.5:
+                fourthFraction = "1/2";
+                break
+              case 0.75:
+                fourthFraction = "3/4";
+                break
+              default:
+                fourthFraction = "";
+            }
+            switch(fourthWhole) {
+              case 0:
+                fourthWhole = "";
+                canFractionText = "of the way";
+                canWholeText = "";
+                break
+              default:
+                canFractionText = "";
+                canWholeText = "time(s)"
+            }
+            kosherFraction = fourthWhole + " " + fourthFraction;
+            //hot water decimals to fractions
+            waterPerServing = servingSize*1.25;
+            waterDecimal = waterPerServing - Math.floor(waterPerServing);
+            switch(waterDecimal) {
+              case 0.25:
+                waterFraction = "1/4";
+                break
+              case 0.5:
+                waterFraction = "1/2";
+                break
+              case 0.75:
+                waterFraction = "3/4";
+                break
+              default:
+                waterFraction = "";
+            }
+            waterAmount = Math.floor(waterPerServing) + " " + waterFraction;
+            //eighth decimals to fractions
+            eighthWhole = Math.floor(eighthPerServing);
+            eighthDecimal = eighthPerServing - eighthWhole;
+            switch(eighthDecimal) {
+              case 0.0625:
+                eighthFraction = "1 pinch";
+                break
+              case 0.125:
+                eighthFraction = "1/8 tsp(s)";
+                break
+              case 0.1875:
+                eighthFraction = "1/8  tsp(s) and a pinch";
+                break
+              case 0.25:
+                eighthFraction = "1/4 tsp(s)";
+                break
+              case 0.3125:
+                eighthFraction = "1/4  tsp(s) and a pinch";
+                break
+              case 0.375:
+                eighthFraction = "3/8 tsp(s)";
+                break
+              case 0.4375:
+                eighthFraction = "3/8 tsp(s) and a pinch";
+                break
+              case 0.5:
+                eighthFraction = "1/2 tsp(s)";
+                break
+              case 0.5625:
+                eighthFraction = "1/2 tsp(s) and a pinch";
+                break
+              case 0.625:
+                eighthFraction = "5/8 tsp(s)";
+                break
+              case 0.6875:
+                eighthFraction = "5/8 tsp(s) and a pinch";
+                break
+              case 0.75:
+                eighthFraction = "3/4 tsp(s)";
+                break
+              case 0.8125:
+                eighthFraction = "3/4 tsp(s) and a pinch";
+                break
+              case 0.875:
+                eighthFraction = "7/8 tsp(s)";
+                break
+              case 0.9375:
+                eighthFraction = "7/8 tsp(s) and a pinch";
+                break
+              default:
+                eighthFraction = "";
+            }
+            switch(eighthWhole) {
+              case 0:
+                eighthWhole = "";
+            }
+            saltAmount = eighthWhole + " " + eighthFraction;
+            
+            document.getElementById("serving").innerHTML = servingSize; 
+            document.getElementById("tamales").innerHTML = servingSize*10;
+            document.getElementById("husks").innerHTML = servingSize*10;
+            document.getElementById("canWaterAmount").innerHTML = kosherFraction;
+            document.getElementById("canFraction").innerHTML = canFractionText;
+            document.getElementById("canWhole").innerHTML = canWholeText;
+            document.getElementById("pork").innerHTML = ingredientAmount;
+            document.getElementById("bayLeaves").innerHTML = servingSize;
+            document.getElementById("kosher").innerHTML = kosherFraction;
+            document.getElementById("pepper1").innerHTML = Math.round(servingSize*2.5);
+            document.getElementById("pepper2").innerHTML = Math.round(servingSize*.5);
+            document.getElementById("pepperOne").innerHTML = Math.round(servingSize*2.5);
+            document.getElementById("pepperTwo").innerHTML = Math.round(servingSize*.5);
+            document.getElementById("cumin").innerHTML = servingSize*2;
+            document.getElementById("tomatoes").innerHTML = ingredientAmount;
+            document.getElementById("salt1").innerHTML = ingredientAmount;
+            document.getElementById("salt2").innerHTML = saltAmount; 
+            document.getElementById("saltOne").innerHTML = ingredientAmount;
+            document.getElementById("saltTwo").innerHTML = saltAmount; 
+            document.getElementById("garlic").innerHTML = servingSize;
+            document.getElementById("chilie1").innerHTML = servingSize*2;
+            document.getElementById("chilie2").innerHTML = Math.floor(servingSize*3.5);
+            document.getElementById("oliveOil").innerHTML = ingredientAmount;
+            document.getElementById("masa").innerHTML = servingSize*4;
+            document.getElementById("crisco").innerHTML = ingredientAmount;
+            document.getElementById("hotWater").innerHTML = waterAmount;
+            document.getElementById("totalHotWater").innerHTML = waterAmount;
+          }
+          
+          function decreaseServing() {
+            if (servingSize > 1) {
+              servingSize--;
+              halfPerServing = servingSize*.5;
+              fourthPerServing = servingSize*.25;
+              eighthPerServing = servingSize*1/16;
+              //Turning decimals into fraction amounts
+              halfWhole = Math.floor(halfPerServing)
+              halfDecimal = halfPerServing - halfWhole;
+              switch(halfDecimal) {
+                case 0.5:
+                  fraction = "1/2";
+                  break
+                default:
+                  fraction = "";
+              }
+              switch(halfWhole) {
+                case 0:
+                  halfWhole = "";
+              }
+              ingredientAmount = halfWhole + " " + fraction;
+              //fourth decimals to fractions
+              fourthWhole = Math.floor(fourthPerServing);
+              fourthDecimal = fourthPerServing - fourthWhole;
+              switch(fourthDecimal) {
+                case 0.25:
+                  fourthFraction = "1/4";
+                  break
+                case 0.5:
+                  fourthFraction = "1/2";
+                  break
+                case 0.75:
+                  fourthFraction = "3/4";
+                  break
+                default:
+                  fourthFraction = "";
+              }
+              switch(fourthWhole) {
+                case 0:
+                  fourthWhole = "";
+                  canFractionText = "of the way";
+                  canWholeText = "";
+                  break
+                default:
+                  canFractionText = "";
+                  canWholeText = "time(s)"
+              }
+              kosherFraction = fourthWhole + " " + fourthFraction;
+              //hot water decimals to fractions
+              waterPerServing = servingSize*1.25;
+              waterDecimal = waterPerServing - Math.floor(waterPerServing);
+              switch(waterDecimal) {
+                case 0.25:
+                  waterFraction = "1/4";
+                  break
+                case 0.5:
+                  waterFraction = "1/2";
+                  break
+                case 0.75:
+                  waterFraction = "3/4";
+                  break
+                default:
+                  waterFraction = "";
+              }
+              waterAmount = Math.floor(waterPerServing) + " " + waterFraction;
+              //eighth decimals to fractions
+              eighthWhole = Math.floor(eighthPerServing);
+              eighthDecimal = eighthPerServing - eighthWhole;
+              switch(eighthDecimal) {
+                case 0.0625:
+                  eighthFraction = "1 pinch";
+                  break
+                case 0.125:
+                  eighthFraction = "1/8 tsp(s)";
+                  break
+                case 0.1875:
+                  eighthFraction = "1/8  tsp(s) and a pinch";
+                  break
+                case 0.25:
+                  eighthFraction = "1/4 tsp(s)";
+                  break
+                case 0.3125:
+                  eighthFraction = "1/4  tsp(s) and a pinch";
+                  break
+                case 0.375:
+                  eighthFraction = "3/8 tsp(s)";
+                  break
+                case 0.4375:
+                  eighthFraction = "3/8 tsp(s) and a pinch";
+                  break
+                case 0.5:
+                  eighthFraction = "1/2 tsp(s)";
+                  break
+                case 0.5625:
+                  eighthFraction = "1/2 tsp(s) and a pinch";
+                  break
+                case 0.625:
+                  eighthFraction = "5/8 tsp(s)";
+                  break
+                case 0.6875:
+                  eighthFraction = "5/8 tsp(s) and a pinch";
+                  break
+                case 0.75:
+                  eighthFraction = "3/4 tsp(s)";
+                  break
+                case 0.8125:
+                  eighthFraction = "3/4 tsp(s) and a pinch";
+                  break
+                case 0.875:
+                  eighthFraction = "7/8 tsp(s)";
+                  break
+                case 0.9375:
+                  eighthFraction = "7/8 tsp(s) and a pinch";
+                  break
+                default:
+                  eighthFraction = "";
+              }
+              switch(eighthWhole) {
+                case 0:
+                  eighthWhole = "";
+              }
+              saltAmount = eighthWhole + " " + eighthFraction;
+              
+              document.getElementById("serving").innerHTML = servingSize;
+              document.getElementById("tamales").innerHTML = servingSize*10;
+              document.getElementById("husks").innerHTML = servingSize*10;
+              document.getElementById("canWaterAmount").innerHTML = kosherFraction;
+              document.getElementById("canFraction").innerHTML = canFractionText;
+              document.getElementById("canWhole").innerHTML = canWholeText;
+              document.getElementById("pork").innerHTML = ingredientAmount;
+              document.getElementById("bayLeaves").innerHTML = servingSize;
+              document.getElementById("kosher").innerHTML = kosherFraction;
+              document.getElementById("pepper1").innerHTML = Math.round(servingSize*2.5);
+              document.getElementById("pepper2").innerHTML = Math.round(servingSize*.5);
+              document.getElementById("pepperOne").innerHTML = Math.round(servingSize*2.5);
+              document.getElementById("pepperTwo").innerHTML = Math.round(servingSize*.5);
+              document.getElementById("cumin").innerHTML = servingSize*2;
+              document.getElementById("tomatoes").innerHTML = ingredientAmount;
+              document.getElementById("salt1").innerHTML = ingredientAmount;
+              document.getElementById("salt2").innerHTML = saltAmount;
+              document.getElementById("saltOne").innerHTML = ingredientAmount;
+              document.getElementById("saltTwo").innerHTML = saltAmount;
+              document.getElementById("garlic").innerHTML = servingSize;
+              document.getElementById("chilie1").innerHTML = servingSize*2;
+              document.getElementById("chilie2").innerHTML = Math.floor(servingSize*3.5);
+              document.getElementById("oliveOil").innerHTML = ingredientAmount;
+              document.getElementById("masa").innerHTML = servingSize*4;
+              document.getElementById("crisco").innerHTML = ingredientAmount;
+              document.getElementById("hotWater").innerHTML = waterAmount;
+              document.getElementById("totalHotWater").innerHTML = waterAmount;
+            }
+          }
+          
+        </script>
+        
+        <div class="tip">
+          <h3>Pro Tip</h3>
+          <p>If you have a sweet tooth you can always replace the pork insides with other ingredients like sugar and raisins or almonds. There isn't really a limit on what you can put inside as long as it can be cooked. Since these treats will be incorperated in the maseca, rather than being used as a filling, make sure to mix them in with the maseca as you prepare them.</p>
+        </div>
+      </div>
+      <!--Empty div-->
+      <div class="col-sm-1"></div>
+    </div>
+    
+    <div class="jumbotron enjoy">
+      <img class="img-responsive" src="https://cdn1.bbcode0.com/uploads/2020/11/1/0cfb3491ede1763d40ee5e78defb9ec3-full.jpg" alt="enjoy">
+      <h1>Enjoy!</h1> 
+    </div>
+    
+    <!--Links to external JavaScript file-->
+    <footer>
+      <script src="cart.js"></script>
+    </footer>
+    
+  </body>
+</html>

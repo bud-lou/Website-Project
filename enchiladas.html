@@ -1,0 +1,454 @@
+ <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>repl.it</title>
+    <link href="index.css" rel="stylesheet" type="text/css" />
+    <!--Google Fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Abril Fatface' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Aref Ruqaa' rel='stylesheet'>
+    <style>
+      #navbarPic {
+        width: 41px;
+        height: 35px;
+        display: inline-block;
+      }
+      .badge {
+        background-color: red;
+      }
+      body {
+        background-color: #fffff5;
+        color: black;
+        font-family: 'Abhaya Libre';
+        font-size: 18px;
+        padding-top: 55px;
+      }
+      #mainImg {
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+        width: 95%;
+        padding-top: 20px;
+      }
+      .jumbotron {
+        background-color: #eee;
+        padding: 0px 25px;
+        text-align: 20px;
+      }
+      h1 {
+        font-family: 'Abril Fatface';
+        padding-bottom: 20px;
+        padding-left: 2.5%;
+        text-align: 0px;
+      }
+      .page-header {
+        width: 95%;
+        margin-right: auto;
+        margin-left: auto;
+      }
+      #ingredients {
+        padding: 5px 15px;
+        text-indent: 20px;
+      }
+      #instructions {
+        padding: 5px 45px;
+      }
+      .glyphicon {
+        color: #646464;
+      }
+      .btn {
+        border: 1px solid #c2c2c2;
+      }
+      .btn-style {
+        background-color: #fffff5;
+        border: none;
+        outline: none !important;
+      }
+      .tip {
+        border: 1px solid #eee;
+        padding: 8px;
+      }
+      #description {
+        text-indent: 20px;
+        padding: 5px 35px;
+      }
+      .enjoy {
+        background-color: rgba(255,82,82,0.75);
+        color: white;
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+        padding-top: 30px;
+        margin-bottom: 0px;
+      }
+      .img-responsive {
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <!--Nav Bar-->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <!--Collapses nav bar when screen is small-->
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">
+            <img id="navbarPic" src="canvas(1).png">
+            <span style="display: inline-block;">Delectably Delicious</span>
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown active">
+              <!--Dropdown in nav bar-->
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Recipes<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="recipes.html">All Recipes</a></li>
+                <li class="divider"></li>
+                <li><a href="recipes.html#original">Original</a></li>
+                <li><a href="recipes.html#modified">Modified</a></li>
+                <li><a href="recipes.html#favorites">Favorites</a></li>
+              </ul>
+            </li>
+            <li><a href="kitchenSup.html">Kitchen Supplies</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a data-toggle="modal" data-target="#myModal">Cart  <span class="glyphicon glyphicon-shopping-cart"></span><span class="badge"><span id="badgeNum"></span></span></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+    <!--Shopping Cart Modal-->
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Shopping Cart</h4>
+          </div>
+          <div class="modal-body">
+            <p><span id="modalText"></span></p>
+            <button type="button" class="btn btn-success" onClick="purchaseItems()">Purchase Items</button>
+            <button type="button" class="btn btn-danger" onClick="location.href='index.html';clearCart()">Empty Cart & Return Home</button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    
+    <div class="jumbotron">
+      <img id="mainImg" src="enchiladasPic.jpg" alt="Enchiladas">
+      <h1>Chicken Enchiladas</h1> 
+    </div>
+    <p id="description">Chicken enchiladas are a Mexican dish that wrap chicken in tortillas and cover with a sauce. Our version of enchiladas layers the meat in tortillas and uses our own personal salsa recipe to add a zing of flavor. If you see any ingredients you don't own, just click the plus and it will be added to the cart. Click again to remove. Note that this will purchase a general amount/container of the product and not just the amount set in the ingredients list.</p>    
+    <div class="page-header"></div>
+    
+    
+    <div class="row">
+      <div class="col-sm-8 color">
+        <div id="ingredients">
+          <h3><strong>Ingredients:</strong></h3>
+          <ul>
+            <li>
+              <!--<span id="chicken"></span> Rotisserie Chicken(s)
+              <button type="button" class="btn btn-style" title="Add to cart" id="enchiladaCart1" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>-->
+              <span id="chicken"></span> Boneless, Skinless Chicken Breasts
+              <button type="button" class="btn btn-style" title="Add to cart" id="enchiladaCart1" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              ~ <span id="tortillas"></span> Corn Tortillas (will vary depending on size of pan)
+              <button type="button" class="btn btn-style" title="Add to cart" id="enchiladaCart2" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              ~ <span id="cheese"></span> cup(s) of fiesta or mexican shredded cheese
+              <button type="button" class="btn btn-style" title="Add to cart" id="enchiladaCart3" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id="onion"></span> <span id="grammar"></span> onion(s) diced up
+              <button type="button" class="btn btn-style" title="Add to cart" id="enchiladaCart4" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              Olive or vegetable oil (amount will vary)
+              <button type="button" class="btn btn-style" title="Add to cart" id="enchiladaCart5" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id="tomatoes"></span> can(s) of italian diced tomatoes
+              <button type="button" class="btn btn-style" title="Add to cart" id="enchiladaCart6" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id="chilie1"></span>-<span id="chilie2"></span> dried red chilies
+              <button type="button" class="btn btn-style" title="Add to cart" id="enchiladaCart7" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id="salt"></span> <abbr title="teaspoon(s)">tsp(s)</abbr> of salt
+              <button type="button" class="btn btn-style" title="Add to cart" id="enchiladaCart8" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id="pepper"></span> pinch(es) of pepper
+              <button type="button" class="btn btn-style" title="Add to cart" id="enchiladaCart9" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id="garlic"></span> dash(es) of garlic
+              <button type="button" class="btn btn-style" title="Add to cart" id="enchiladaCart10" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+          </ul>
+        </div>
+        
+        <h3 style="text-indent: 40px;"><strong>Instructions:</strong></h3>
+        <div id="instructions">
+          <ol>
+            <!--<li>Take rotisserie chicken and shred the whole thing and set aside.</li>-->
+            <li>Preheat oven to 375 F</li>
+            <li>Lather chicken in oil and cook in oven for about 25-30 minutes or until internal temp is at least 165 F</li>
+            <li>Once done, shred the chicken in a bowl and set aside</li>
+            <li><strong>Make the Salsa</strong></li>
+              <ol>
+                <li>Empty can of tomatoes in blender</li>
+                <li>Rinse chillies and add to blender</li>
+                <li>Season w/ salt, pepper and garlic powder</li>
+                <li>Fill empty tomato can with water equal to half the amount of tomatoes you used and add to blender (to get the last of the tomato stuff out and add more as needed)</li>
+                <li>Blend for about <strong>30-45 seconds</strong> or until mixture is smooth: w/o chunks</li>
+              </ol>
+            <li>Pour all of salsa in frying pan - keep it on a low simmer (no boiling)</li>
+            <li>While it's warming, warm the tortillas in microwave so they are pliable</li>
+            <li>Set another small frying pan on a burner and fill it w/ the oil of your choice so that the bottom is coated enough to submerge the tortillas - low/medium heat</li>
+            <li><strong>Assemble the Enchilada</strong></li>
+              <ol type="i">
+                <li>Take 1 tortilla and place it in the pan with oil, use a slotted spatula to flip it and let it sit for about <strong>5-8 seconds</strong> </li>
+                <li>Pick up the tortilla w/ the spatula and grab a new tortilla on the palm of your other hand, press them together in order to pad the grease onto the new one</li>
+                <li>Move the soaked tortilla to the salsa on the other burner, let it sit in salsa for about <strong>2-3 seconds</strong> - if it’s in there too long it will start to fall apart</li>
+                <li>Meanwhile put the tortilla from your other hand in the oil</li>
+                <li>Take the tortilla out, no need to pad off excess salsa, and place it on the bottom layer of the pan</li>
+                <li>Repeat steps ii.-v. until the bottom of the pan is covered while tortillas are slightly overlapping</li>
+                <li>Repeat w/ more tortillas (usually about 6) until the bottom of the pan is covered (slightly overlapping)</li>
+                <li>Spread a light layer of shredded chicken, onion and cheese on top</li>
+                <!--<img class="img-responsive" src="oneLayer.jpg" alt="spread">-->
+                <li>Repeat steps vii.-viii. one more time and then add a final layer of 6 tortillas on top</li>
+                <li>Cover this with cheese and onion</li>
+                <li>Pour whatever salsa is left from the pan on top (shouldn’t be much left)</li>
+              </ol>
+            <li>Set oven to high broil and stick it in for about <strong>3-5 minutes</strong> so the cheese can melt and the dish can warm up</li>
+            <li>Remove and let it cool for a couple of minutes before serving</li>
+          </ol>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <h3><strong>Portion Size:</strong></h3>
+        <div class="btn-group">
+          <input class="button btn" type="button" onClick="decreaseServing()" Value="-" />
+          <button type="button" class="btn disabled"><span id=serving></span></button>
+          <input class="button btn" type="button" onClick="increaseServing()" Value="+" />
+        </div>
+        <h6 style="padding-bottom:70px;">*This portion size makes about <span id="enchiladas"></span> enchiladas depending on how big you cut the slices*</h6>
+        
+        <script>
+          var servingSize = 2;
+          document.getElementById("serving").innerHTML = servingSize;
+          document.getElementById("enchiladas").innerHTML = "12";
+          document.getElementById("chicken").innerHTML = "2"; //used to be 1
+          document.getElementById("tortillas").innerHTML = "18";
+          document.getElementById("cheese").innerHTML = "1";
+          document.getElementById("onion").innerHTML = "1/4";
+          document.getElementById("grammar").innerHTML = "of an";
+          document.getElementById("tomatoes").innerHTML = "1";
+          document.getElementById("chilie1").innerHTML = "4";
+          document.getElementById("chilie2").innerHTML = "7";
+          document.getElementById("salt").innerHTML = "1/4";
+          document.getElementById("pepper").innerHTML = "1";
+          document.getElementById("garlic").innerHTML = "2";
+          
+          
+          function increaseServing() {
+            servingSize++;
+            halfPerServing = servingSize*.5;
+            eighthPerServing = 1/8*servingSize;
+            
+            //Turning decimals into fraction amounts
+              halfWhole = Math.floor(halfPerServing)
+              halfDecimal = halfPerServing - halfWhole;
+              switch(halfDecimal) {
+                case 0.5:
+                  fraction = "1/2";
+                  break
+                default:
+                  fraction = "";
+              }
+              switch(halfWhole) {
+                case 0:
+                  halfWhole = "";
+              }
+              ingredientAmount = halfWhole + " " + fraction;
+              //eighth decimals to fractions
+              eighthWhole = Math.floor(eighthPerServing);
+              eighthDecimal = eighthPerServing - eighthWhole;
+              switch(eighthDecimal) {
+                case 0.125:
+                  eighthFraction = "1/8";
+                  document.getElementById("grammar").innerHTML = "of an";
+                  break
+                case 0.25:
+                  eighthFraction = "1/4";
+                  document.getElementById("grammar").innerHTML = "of an";
+                  break
+                case 0.375:
+                  eighthFraction = "3/8";
+                  document.getElementById("grammar").innerHTML = "of an";
+                  break
+                case 0.5:
+                  eighthFraction = "1/2";
+                  document.getElementById("grammar").innerHTML = "of an";
+                  break
+                case 0.625:
+                  eighthFraction = "5/8";
+                  document.getElementById("grammar").innerHTML = "of an";
+                  break
+                case 0.75:
+                  eighthFraction = "3/4";
+                  document.getElementById("grammar").innerHTML = "of an";
+                  break
+                case 0.875:
+                  eighthFraction = "7/8";
+                  document.getElementById("grammar").innerHTML = "of an";
+                  break
+                default:
+                  eighthFraction = "";
+                  document.getElementById("grammar").innerHTML = "whole";
+              }
+              switch(eighthWhole) {
+                case 0:
+                  eighthWhole = "";
+              }
+              onionAmount = eighthWhole + " " + eighthFraction;
+            
+            document.getElementById("serving").innerHTML = servingSize;
+            document.getElementById("enchiladas").innerHTML = servingSize*6;
+            document.getElementById("chicken").innerHTML = ingredientAmount;
+            document.getElementById("tortillas").innerHTML = servingSize*9;
+            document.getElementById("cheese").innerHTML = ingredientAmount;
+            document.getElementById("onion").innerHTML = onionAmount;
+            document.getElementById("tomatoes").innerHTML = ingredientAmount;
+            document.getElementById("chilie1").innerHTML = servingSize*2;
+            document.getElementById("chilie2").innerHTML = Math.floor(servingSize*3.5);
+            document.getElementById("salt").innerHTML = onionAmount;
+            document.getElementById("pepper").innerHTML = ingredientAmount;
+            document.getElementById("garlic").innerHTML = servingSize;
+          }
+          
+          function decreaseServing() {
+            if (servingSize > 1) {
+              servingSize--;
+              halfPerServing = servingSize*.5;
+              eighthPerServing = 1/8*servingSize;
+              
+              //Turning decimals into fraction amounts
+              halfWhole = Math.floor(halfPerServing)
+              halfDecimal = halfPerServing - halfWhole;
+              switch(halfDecimal) {
+                case 0.5:
+                  fraction = "1/2";
+                  break
+                default:
+                  fraction = "";
+              }
+              switch(halfWhole) {
+                case 0:
+                  halfWhole = "";
+              }
+              ingredientAmount = halfWhole + " " + fraction;
+              //eighth decimals to fractions
+              eighthWhole = Math.floor(eighthPerServing);
+              eighthDecimal = eighthPerServing - eighthWhole;
+              switch(eighthDecimal) {
+                case 0.125:
+                  eighthFraction = "1/8";
+                  document.getElementById("grammar").innerHTML = "of an";
+                  break
+                case 0.25:
+                  eighthFraction = "1/4";
+                  document.getElementById("grammar").innerHTML = "of an";
+                  break
+                case 0.375:
+                  eighthFraction = "3/8";
+                  document.getElementById("grammar").innerHTML = "of an";
+                  break
+                case 0.5:
+                  eighthFraction = "1/2";
+                  document.getElementById("grammar").innerHTML = "of an";
+                  break
+                case 0.625:
+                  eighthFraction = "5/8";
+                  document.getElementById("grammar").innerHTML = "of an";
+                  break
+                case 0.75:
+                  eighthFraction = "3/4";
+                  document.getElementById("grammar").innerHTML = "of an";
+                  break
+                case 0.875:
+                  eighthFraction = "7/8";
+                  document.getElementById("grammar").innerHTML = "of an";
+                  break
+                default:
+                  eighthFraction = "";
+                  document.getElementById("grammar").innerHTML = "whole";
+              }
+              switch(eighthWhole) {
+                case 0:
+                  eighthWhole = "";
+              }
+              onionAmount = eighthWhole + " " + eighthFraction;
+              
+              document.getElementById("serving").innerHTML = servingSize;
+              document.getElementById("enchiladas").innerHTML = servingSize*6;
+              document.getElementById("chicken").innerHTML = ingredientAmount;
+              document.getElementById("tortillas").innerHTML = servingSize*9;
+              document.getElementById("cheese").innerHTML = ingredientAmount;
+              document.getElementById("onion").innerHTML = onionAmount;
+              document.getElementById("tomatoes").innerHTML = ingredientAmount;
+              document.getElementById("chilie1").innerHTML = servingSize*2;
+              document.getElementById("chilie2").innerHTML = Math.floor(servingSize*3.5);
+              document.getElementById("salt").innerHTML = onionAmount;
+              document.getElementById("pepper").innerHTML = ingredientAmount;
+              document.getElementById("garlic").innerHTML = servingSize;
+            }
+          }
+        </script>
+
+        <div class="tip">
+          <h3>Pro Tip</h3>
+          <p>Remove the seeds from the chiles before blending to reduce the spiciness of the salsa.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1"></div> <!--Empty collumn-->
+    
+    <div class="jumbotron enjoy">
+      <img class="img-responsive" src="https://cdn1.bbcode0.com/uploads/2020/11/3/4f2ee021c5c629dafffe29c39f1de331-full.jpg" alt="enjoy">
+      <h1>Enjoy!</h1> 
+    </div>
+    
+    <!--Links to external JavaScript file-->
+    <footer>
+      <script src="cart.js"></script>
+    </footer>
+    
+  </body>
+</html>

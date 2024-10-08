@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>repl.it</title>
+    <link href="index.css" rel="stylesheet" type="text/css" />
+    <!--Google Fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Abril Fatface' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Aref Ruqaa' rel='stylesheet'>
+    <style>
+      #navbarPic {
+        width: 41px;
+        height: 35px;
+        display: inline-block;
+      }
+      .badge {
+        background-color: red;
+      }
+      body {
+        background-color: #fffff5;
+        color: black;
+        font-family: 'Abhaya Libre';
+        font-size: 18px;
+        padding-top: 55px;
+      }
+      h1 {
+        text-align: center;
+        font-family: 'Abril Fatface';
+        background-color: rgba(255,82,82,0.75);
+        padding-top: 15px;
+        padding-bottom: 15px;
+      }
+      #description {
+        text-indent: 20px;
+        padding: 40px 35px 5px 35px;
+      }
+      .glyphicon {
+        color: #646464;
+        font-size: 25px;
+      }
+      .btn-style {
+        background-color: transparent;
+        border: none;
+        outline: none !important;
+      }
+      .well {
+        margin: 20px;
+      }
+      .indent {
+        text-indent: 5%;
+      }
+      .img1 {
+        margin-bottom: -20px;
+      }
+      .addToCart {
+        display: flex;
+        float: left;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <!--Nav Bar-->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <!--Collapses nav bar when screen is small-->
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">
+            <img id="navbarPic" src="canvas(1).png">
+            <span style="display: inline-block;">Delectably Delicious</span>
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown">
+              <!--Dropdown in nav bar-->
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Recipes<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="recipes.html">All Recipes</a></li>
+                <li class="divider"></li>
+                <li><a href="recipes.html#original">Original</a></li>
+                <li><a href="recipes.html#modified">Modified</a></li>
+                <li><a href="recipes.html#favorites">Favorites</a></li>
+              </ul>
+            </li>
+            <li class="active"><a href="kitchenSup.html">Kitchen Supplies</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a data-toggle="modal" data-target="#myModal">Cart  <span class="glyphicon glyphicon-shopping-cart"></span><span class="badge"><span id="badgeNum"></span></span></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+    <!--Shopping Cart Modal-->
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Shopping Cart</h4>
+          </div>
+          <div class="modal-body">
+            <p><span id="modalText"></span></p>
+            <button type="button" class="btn btn-success" onClick="purchaseItems()">Purchase Items</button>
+            <button type="button" class="btn btn-danger" onClick="location.href='index.html';clearCart()">Empty Cart & Return Home</button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    
+    <h1>Kitchen Supplies</h1>
+    <p id="description">Here you can browse through our collection of Delectably Delicious<sup>TM</sup> Cooking Supplies. You can get essential cooking tools that are priced cheaply and customized with our signature pink-salmon color. These products are made with the best materials and designed to efficiently serve all of your baking needs. Have fun browsing!</p>
+    <br>
+    <div class="well well-lg">
+      <div class="row">
+        <div class="col-sm-5">
+          <!--Images include edited content from Cook and PSD-->
+          <img class="img-responsive img1" src="https://cdn1.bbcode0.com/uploads/2020/11/13/80f56670c1730d581fb496ae92d59e03-full.png" alt="Cookie Press">
+        </div>
+        <div class="col-sm-5">
+          <h2>Cookie Press</h2>
+          <br>
+          <p class="indent">This cookie press is made with stainless silver and has a non-slip grip for easy use. The cylinder where the dough goes is clear so that you can effortlessly monitor how much is left. This set also comes with 14 different plates to shape the cookie and 5 different icing tips you can use to decorate the cookies.</p>
+        </div>
+        <div class="col-sm-2">
+          <h3>Price: <strong>$25.00</strong></h3>
+          <br>
+          <div class="addToCart">
+              <h3>Add to Cart:</h3>
+              <button type="button" class="btn btn-style" title="Add to cart" id="itemsCart1" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="well well-lg">
+      <div class="row">
+        <div class="col-sm-5">
+          <!--Images include edited content from Schoolhouse and Iconscout-->
+          <img class="img-responsive img2" src="https://cdn1.bbcode0.com/uploads/2020/11/13/78c7c34b41ba238aa3bb5d93e5baf359-full.png" alt="Spoon Rest">
+        </div>
+        <div class="col-sm-5">
+          <h2>Spoon Rest</h2>
+          <br>
+          <p class="indent">This Delectably Delicious<sup>TM</sup> spoon rest can be placed under your dirty kitchen utensils so that you can keep using them without dirtying your counter when you set them down. It's perfect for cooking soups and pastas with a design made out of granite and decorated with our own logo.</p>
+        </div>
+        <div class="col-sm-2">
+          <h3>Price: <strong>$8.00</strong></h3>
+          <br>
+          <div class="addToCart">
+              <h3>Add to Cart:</h3>
+              <button type="button" class="btn btn-style" title="Add to cart" id="itemsCart2" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="well well-lg">
+      <div class="row">
+        <div class="col-sm-5">
+          <!--Images include edited content from Pxfuel and Product Support & Manuals-->
+          <img class="img-responsive" src="https://cdn1.bbcode0.com/uploads/2020/11/13/ca746f508d0df4312cf184cac79d6f79-full.png" alt="Utensil Set">
+        </div>
+        <div class="col-sm-5">
+          <h2>Utensil Set</h2>
+          <br>
+          <p class="indent">This utensil set comes with 6 differnt variations of spoons and spatulas, specialized for different recipes. Their plastic material is great for not sticking to your food and the rubber grips make it easy to utilize.</p>
+        </div>
+        <div class="col-sm-2">
+          <h3>Price: <strong>$15.00</strong></h3>
+          <br>
+          <div class="addToCart">
+              <h3>Add to Cart:</h3>
+              <button type="button" class="btn btn-style" title="Add to cart" id="itemsCart3" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="well well-lg">
+      <div class="row">
+        <div class="col-sm-5">
+          <!--Images include edited content from Community Coffee, PickPik and Steel Fire Equipment-->
+          <img class="img-responsive" src="https://cdn1.bbcode0.com/uploads/2020/11/13/97854b329e534624c3eb9418b952afc2-full.png" alt="Oven Mitt">
+        </div>
+        <div class="col-sm-5">
+          <h2>Oven Mitt</h2>
+          <br>
+          <p class="indent">This pair of oven mitts come in our cute, signature pink-salmon color and work perfectly to keep your hands from burning when you are pulling something out of the oven or handling hot pans off the stove. The insides also have rubber grips to prevent anything from slipping out of your hands.</p>
+        </div>
+        <div class="col-sm-2">
+          <h3>Price: <strong>$12.00</strong></h3>
+          <br>
+          <div class="addToCart">
+              <h3>Add to Cart:</h3>
+              <button type="button" class="btn btn-style" title="Add to cart" id="itemsCart4" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="well well-lg">
+      <div class="row">
+        <div class="col-sm-5">
+          <!--Images include edited content from The Home Depot and Waring Commercial-->
+          <img class="img-responsive" src="https://cdn1.bbcode0.com/uploads/2020/11/13/a3b855a0162f2d1358717087e4171b0a-full.png" alt="Toaster">
+        </div>
+        <div class="col-sm-5">
+          <h2>Toaster</h2>
+          <br>
+          <p class="indent">This is a classic four slotted toaster with two levers and dials. It includes a crumb tray, so don't forget to empty it every now and then! When the items are done toasting, a spring sound will ring out to alert you.</p>
+        </div>
+        <div class="col-sm-2">
+          <h3>Price: <strong>$38.00</strong></h3>
+          <br>
+          <div class="addToCart">
+              <h3>Add to Cart:</h3>
+              <button type="button" class="btn btn-style" title="Add to cart" id="itemsCart5" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!--Links to external JavaScript file-->
+    <footer>
+      <script src="cart.js"></script>
+    </footer>
+    
+  </body>
+</html>

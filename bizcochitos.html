@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>repl.it</title>
+    <link href="index.css" rel="stylesheet" type="text/css" />
+    <!--Google Fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Abril Fatface' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Aref Ruqaa' rel='stylesheet'>
+    <style>
+      body {
+        padding-top: 55px;
+      }
+      #navbarPic {
+        width: 41px;
+        height: 35px;
+        display: inline-block;
+      }
+      .badge {
+        background-color: red;
+      }
+      body {
+        background-color: #fffff5;
+        color: black;
+        font-family: 'Abhaya Libre';
+        font-size: 18px;
+      }
+      #mainImg {
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+        width: 95%;
+        padding-top: 20px;
+      }
+      .jumbotron {
+        background-color: #eee;
+        padding: 0px 25px;
+        text-align: 20px;
+      }
+      h1 {
+        font-family: 'Abril Fatface';
+        padding-bottom: 20px;
+        padding-left: 2.5%;
+        text-align: 0px;
+      }
+      .page-header {
+        width: 95%;
+        margin-right: auto;
+        margin-left: auto;
+      }
+      .list {
+        padding: 5px 15px;
+        text-indent: 20px;
+      }
+      #instructions {
+        padding: 5px 45px;
+      }
+      .glyphicon {
+        color: #646464;
+      }
+      .btn {
+        border: 1px solid #c2c2c2;
+      }
+      .btn-style {
+        background-color: #fffff5;
+        border: none;
+        outline: none !important;
+      }
+      #description {
+        text-indent: 20px;
+        padding: 5px 35px;
+      }
+      .tip {
+        border: 1px solid #eee;
+        padding: 8px;
+      }
+      .enjoy {
+        background-color: rgba(255,82,82,0.75);
+        color: white;
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+        padding-top: 30px;
+        margin-bottom: 0px;
+      }
+      .img-responsive {
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <!--Nav Bar-->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <!--Collapses nav bar when screen is small-->
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">
+            <img id="navbarPic" src="canvas(1).png">
+            <span style="display: inline-block;">Delectably Delicious</span>
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown active">
+              <!--Dropdown in nav bar-->
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Recipes<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="recipes.html">All Recipes</a></li>
+                <li class="divider"></li>
+                <li><a href="recipes.html#original">Original</a></li>
+                <li><a href="recipes.html#modified">Modified</a></li>
+                <li><a href="recipes.html#favorites">Favorites</a></li>
+              </ul>
+            </li>
+            <li><a href="kitchenSup.html">Kitchen Supplies</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a data-toggle="modal" data-target="#myModal">Cart  <span class="glyphicon glyphicon-shopping-cart"></span><span class="badge"><span id="badgeNum"></span></span></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+    <!--Shopping Cart Modal-->
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Shopping Cart</h4>
+          </div>
+          <div class="modal-body">
+            <p><span id="modalText"></span></p>
+            <button type="button" class="btn btn-success" onClick="purchaseItems()">Purchase Items</button>
+            <button type="button" class="btn btn-danger" onClick="location.href='index.html';clearCart()">Empty Cart & Return Home</button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    
+    <div class="jumbotron">
+      <img id="mainImg" src="bizcochitos2.jpg" alt="Bizcochitos">
+      <h1>Bizcochitos</h1> 
+    </div>
+    <p id="description">Bizcochitos are small Mexican cookies flavoured with cinnamon and sugar. They can often be found around the winter holidays in fun little shapes. Our unique recipe utilizes grapefruit juice in order for the cookies to cook better. In this recipe you will learn how to make these cookies from scratch! If you see any ingredients you don't own, just click the plus and it will be added to the cart. Click again to remove. Note that this will purchase a general amount/container of the product and not just the amount set in the ingredients list.</p>  
+    <div class="page-header"></div>
+    
+    
+    <div class="row">
+      <div class="col-sm-8 color">
+        <h3 class="list"><strong>Prep Time: </strong>15-25 minutes</h3>
+        <div class="list">
+          <h3><strong>Ingredients:</strong></h3>
+          <ul>
+            <li>
+              <span id="crisco"></span> <abbr title="tablespoons">tbsps</abbr> of crisco
+              <button type="button" class="btn btn-style" title="Add to cart" id="bizcochitoCart1" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id="sugar1"></span> <abbr title="used at different times in recipe">+</abbr> <span id="sugar2"></span> cups of sugar
+              <button type="button" class="btn btn-style" title="Add to cart" id="bizcochitoCart2" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id="cinnamon1"></span> <abbr title="used at different times in recipe">+</abbr> <span id="cinnamon2"></span> <abbr title="teaspoons">tsps</abbr> of cinnamon powder
+              <button type="button" class="btn btn-style" title="Add to cart" id="bizcochitoCart3" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id="egg"></span> egg(s)
+              <button type="button" class="btn btn-style" title="Add to cart" id="bizcochitoCart4" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id="bakingPowder"></span> <abbr title="tablespoon(s)">tbsp(s)</abbr> of baking powder
+              <button type="button" class="btn btn-style" title="Add to cart" id="bizcochitoCart5" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id="flour"></span> cups of flour
+              <button type="button" class="btn btn-style" title="Add to cart" id="bizcochitoCart6" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id="juice"></span> cup(s) of grapefruit juice
+              <button type="button" class="btn btn-style" title="Add to cart" id="bizcochitoCart7" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+          </ul>
+        </div>
+        
+        <h3 class="list"><strong>Instructions:</strong></h3>
+        <div id="instructions">
+          <ol>
+            <li>Preheat the oven to 350°F</li>
+            <li>Blend together crisco, <span id="sugarOne"></span> cup(s) of sugar and <span id="cinnamonOne"></span> <abbr title="teaspoon(s)">tsp(s)</abbr> of cinnamon in a large bowl with a mixer for <strong>about 40 seconds</strong></li>
+            <li>Add flour, eggs, baking powder and grapefruit juice and blend for <strong>1-2 minutes</strong></li>
+            <li>Begin kneading the dough together until it takes on a medium soft consistency like the picture below</li>
+            <img class="img-responsive" src="bizcochitosDough.jpg" alt="dough">
+            <li>Put dough into a cookie press and press the cookies onto a pan</li>
+            <li>Bake cookies for <strong>10-12 minutes</strong></li>
+            <li>During this duration, mix together <span id="sugarTwo"></span> cup(s) of sugar and <span id="cinnamonTwo"></span> <abbr title="teaspoon(s)">tsp(s)</abbr> of cinnamon together in a bowl</li>
+            <li>Let cool for about <strong>3 minutes</strong></li>
+            <li>As soon as possible, takes the cookies off of the cookie sheet and coat them in the mixture of cinnamon and sugar</li>
+            <li>Let any excess spice fall off the cookie and place it on a plate or wherever you plan on storing them</li>
+          </ol>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <h3><strong>Portion Size:</strong></h3>
+        <div class="btn-group">
+          <input class="button btn" type="button" onClick="decreaseServing()" Value="-" />
+          <button type="button" class="btn disabled"><span id=serving></span></button>
+          <input class="button btn" type="button" onClick="increaseServing()" Value="+" />
+        </div>
+        <h6 style="padding-bottom:70px;">*This portion size makes about <span id="cookie"></span> cookies*</h6>
+      
+        <script>
+          var servingSize = 2;
+          document.getElementById("serving").innerHTML = servingSize;
+          document.getElementById("cookie").innerHTML = "50";
+          document.getElementById("crisco").innerHTML = "5 1/3";
+          document.getElementById("sugar1").innerHTML = "1";
+          document.getElementById("sugar2").innerHTML = "1";
+          document.getElementById("cinnamon1").innerHTML = "1";
+          document.getElementById("cinnamon2").innerHTML = "1";
+          document.getElementById("sugarOne").innerHTML = "1";
+          document.getElementById("sugarTwo").innerHTML = "1";
+          document.getElementById("cinnamonOne").innerHTML = "1";
+          document.getElementById("cinnamonTwo").innerHTML = "1";
+          document.getElementById("egg").innerHTML = "1";
+          document.getElementById("bakingPowder").innerHTML = "1";
+          document.getElementById("flour").innerHTML = "1 2/3";
+          document.getElementById("juice").innerHTML = "1/3";
+          
+          
+          function increaseServing() {
+            servingSize++;
+            criscoNum = 8/3*servingSize;
+            halfPerServing = servingSize*.5;
+            flourNum = 5/6*servingSize;
+            juiceNum = 1/6*servingSize;
+            //Turning decimals into fraction amounts
+            halfDecimal = halfPerServing - Math.floor(halfPerServing); // .5 to 1/2
+            switch(halfDecimal) {
+              case 0.5:
+                halfFraction = "1/2";
+                break
+              default:
+                halfFraction = "";
+            }
+            ingredientAmount = Math.floor(halfPerServing) + " " + halfFraction;
+            // .333 to 1/3 & .666 to 2/3
+            thirdDecimal = criscoNum - Math.floor(criscoNum);
+            if (thirdDecimal > 0.3 && thirdDecimal < 0.6) {
+              criscoFraction = "1/3";
+            } else if (thirdDecimal > 0.6) {
+              criscoFraction = "2/3";
+            } else {
+              criscoFraction = "";
+            }
+            criscoAmount = Math.floor(criscoNum) +  " " + criscoFraction;
+            // sixth fractions for juice
+            sixthWhole = Math.floor(juiceNum);
+            sixthDecimal = juiceNum - sixthWhole;
+            if (sixthDecimal > 0 && sixthDecimal < 0.3) {
+              juiceFraction = "1/6";
+            } else if (sixthDecimal > 0.3 && sixthDecimal < 0.5) {
+              juiceFraction = "1/3";
+            } else if (sixthDecimal > 0.4 && sixthDecimal < 0.6) {
+              juiceFraction = "1/2";
+            } else if (sixthDecimal > 0.6 && sixthDecimal < 0.8) {
+              juiceFraction = "2/3";
+            } else if (sixthDecimal > 0.8) {
+              juiceFraction = "5/6";
+            } else {
+              juiceFraction = "";
+            }
+            switch(sixthWhole) {
+                case 0:
+                  sixthWhole = "";
+              }
+            juiceAmount = sixthWhole + " " + juiceFraction;
+            // sixth fractions for flour
+            sixthWholeNum = Math.floor(flourNum);
+            flourDecimal = flourNum - sixthWholeNum;
+            if (flourDecimal > 0 && flourDecimal < 0.3) {
+              flourFraction = "1/6";
+            } else if (flourDecimal > 0.3 && flourDecimal < 0.5) {
+              flourFraction = "1/3";
+            } else if (flourDecimal > 0.4 && flourDecimal < 0.6) {
+              flourFraction = "1/2";
+            } else if (flourDecimal > 0.6 && flourDecimal < 0.8) {
+              flourFraction = "2/3";
+            } else if (flourDecimal > 0.8) {
+              flourFraction = "5/6";
+            } else {
+              flourFraction = "";
+            }
+            switch(sixthWholeNum) {
+                case 0:
+                  sixthWholeNum = "";
+              }
+            flourAmount = sixthWholeNum + " " + flourFraction;
+            
+            
+            document.getElementById("serving").innerHTML = servingSize;
+            document.getElementById("cookie").innerHTML = servingSize*25;
+            document.getElementById("crisco").innerHTML = criscoAmount;
+            document.getElementById("sugar1").innerHTML = ingredientAmount;
+            document.getElementById("sugar2").innerHTML = ingredientAmount;
+            document.getElementById("cinnamon1").innerHTML = ingredientAmount;
+            document.getElementById("cinnamon2").innerHTML = ingredientAmount;
+            document.getElementById("sugarOne").innerHTML = ingredientAmount;
+            document.getElementById("sugarTwo").innerHTML = ingredientAmount;
+            document.getElementById("cinnamonOne").innerHTML = ingredientAmount;
+            document.getElementById("cinnamonTwo").innerHTML = ingredientAmount;
+            document.getElementById("egg").innerHTML = ingredientAmount;
+            document.getElementById("bakingPowder").innerHTML = ingredientAmount;
+            document.getElementById("flour").innerHTML = flourAmount;
+            document.getElementById("juice").innerHTML = juiceAmount;
+          }
+          
+          function decreaseServing() {
+            if (servingSize > 1) {
+              servingSize--;
+              criscoNum = 8/3*servingSize;
+              halfPerServing = servingSize*.5;
+              flourNum = 5/6*servingSize;
+              juiceNum = 1/6*servingSize;
+              //Turning decimals into fraction amounts
+              halfWhole = Math.floor(halfPerServing)
+              halfDecimal = halfPerServing - halfWhole;
+              switch(halfDecimal) {
+                case 0.5:
+                  fraction = "1/2";
+                  break
+                default:
+                  fraction = "";
+              }
+              switch(halfWhole) {
+                case 0:
+                  halfWhole = "";
+              }
+              ingredientAmount = halfWhole + " " + fraction;
+              // .333 to 1/3 & .666 to 2/3
+              thirdDecimal = criscoNum - Math.floor(criscoNum);
+              if (thirdDecimal > 0.3 && thirdDecimal < 0.6) {
+                criscoFraction = "1/3";
+              } else if (thirdDecimal > 0.3) {
+                criscoFraction = "2/3";
+              } else {
+                criscoFraction = "";
+              }
+              criscoAmount = Math.floor(criscoNum) +  " " + criscoFraction;
+              // sixth fractions
+              sixthWhole = Math.floor(juiceNum);
+              sixthDecimal = juiceNum - sixthWhole;
+              if (sixthDecimal > 0 && sixthDecimal < 0.3) {
+                juiceFraction = "1/6";
+              } else if (sixthDecimal > 0.3 && sixthDecimal < 0.5) {
+                juiceFraction = "1/3";
+              } else if (sixthDecimal > 0.4 && sixthDecimal < 0.6) {
+                juiceFraction = "1/2";
+              } else if (sixthDecimal > 0.6 && sixthDecimal < 0.8) {
+                juiceFraction = "2/3";
+              } else if (sixthDecimal > 0.8) {
+                juiceFraction = "5/6";
+              } else {
+                juiceFraction = "";
+              }
+              switch(sixthWhole) {
+                  case 0:
+                    sixthWhole = "";
+                }
+              juiceAmount = sixthWhole + " " + juiceFraction;
+              // sixth fractions for flour
+              sixthWholeNum = Math.floor(flourNum);
+              flourDecimal = flourNum - sixthWholeNum;
+              if (flourDecimal > 0 && flourDecimal < 0.3) {
+                flourFraction = "1/6";
+              } else if (flourDecimal > 0.3 && flourDecimal < 0.5) {
+                flourFraction = "1/3";
+              } else if (flourDecimal > 0.4 && flourDecimal < 0.6) {
+                flourFraction = "1/2";
+              } else if (flourDecimal > 0.6 && flourDecimal < 0.8) {
+                flourFraction = "2/3";
+              } else if (flourDecimal > 0.8) {
+                flourFraction = "5/6";
+              } else {
+                flourFraction = "";
+              }
+              switch(sixthWholeNum) {
+                  case 0:
+                    sixthWholeNum = "";
+                }
+              flourAmount = sixthWholeNum + " " + flourFraction;
+              
+              document.getElementById("serving").innerHTML = servingSize;
+              document.getElementById("cookie").innerHTML = servingSize*25;
+              document.getElementById("crisco").innerHTML = criscoAmount;
+              document.getElementById("sugar1").innerHTML = ingredientAmount;
+              document.getElementById("sugar2").innerHTML = ingredientAmount;
+              document.getElementById("cinnamon1").innerHTML = ingredientAmount;
+              document.getElementById("cinnamon2").innerHTML = ingredientAmount;
+              document.getElementById("sugarOne").innerHTML = ingredientAmount;
+              document.getElementById("sugarTwo").innerHTML = ingredientAmount;
+              document.getElementById("cinnamonOne").innerHTML = ingredientAmount;
+              document.getElementById("cinnamonTwo").innerHTML = ingredientAmount;
+              document.getElementById("egg").innerHTML = ingredientAmount;
+              document.getElementById("bakingPowder").innerHTML = ingredientAmount;
+              document.getElementById("flour").innerHTML = flourAmount;
+              document.getElementById("juice").innerHTML = juiceAmount;
+              
+            }
+          }
+          
+
+        </script>
+        
+        <div class="tip">
+          <h3>Pro Tip</h3>
+          <p>If you don’t have a cookie press, put flour on a cutting board and use cookie cutters or a knife to shape your cookies.</p>
+        </div>
+      </div>
+      <!--Empty div-->
+      <div class="col-sm-1"></div>
+    </div>
+    
+    <div class="jumbotron enjoy">
+      <img class="img-responsive" src="bizcochitos3.jpg" alt="enjoy">
+      <h1>Enjoy!</h1> 
+    </div>
+    
+    <!--Links to external JavaScript file-->
+    <footer>
+      <script src="cart.js"></script>
+    </footer>
+    
+  </body>
+</html>

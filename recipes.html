@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>repl.it</title>
+    <link href="index.css" rel="stylesheet" type="text/css" />
+    <!--Google Fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Abril Fatface' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Aref Ruqaa' rel='stylesheet'>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background-color: #fffff5;
+        color: black;
+        font-family: 'Abhaya Libre';
+        font-size: 18px;
+        padding-top: 55px;
+      }
+      h1 {
+        text-align: center;
+        font-family: 'Abril Fatface';
+        background-color: rgba(255,82,82,0.75);
+        padding-top: 15px;
+        padding-bottom: 15px;
+      }
+      h2 {
+        text-align: center;
+        font-family: 'Abril Fatface';
+        background-color: rgba(255,82,82,0.75);
+        padding: 10px 0px;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 40px;
+      }
+      #navbarPic {
+        width: 41px;
+        height: 35px;
+        display: inline-block;
+      }
+      .badge {
+        background-color: red;
+      }
+      #original, #modified, #favorites {
+        display: block; 
+        position: relative; 
+        top: -50px; 
+        visibility: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <!--Nav Bar-->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <!--Collapses nav bar when screen is small-->
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">
+            <img id="navbarPic" src="canvas(1).png">
+            <span style="display: inline-block;">Delectably Delicious</span>
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown active">
+              <!--Dropdown in nav bar-->
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Recipes<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="recipes.html">All Recipes</a></li>
+                <li class="divider"></li>
+                <li><a href="recipes.html#original">Original</a></li>
+                <li><a href="recipes.html#modified">Modified</a></li>
+                <li><a href="recipes.html#favorites">Favorites</a></li>
+              </ul>
+            </li>
+            <li><a href="kitchenSup.html">Kitchen Supplies</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a data-toggle="modal" data-target="#myModal">Cart  <span class="glyphicon glyphicon-shopping-cart"></span><span class="badge"><span id="badgeNum"></span></span></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+    <!--Shopping Cart Modal-->
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Shopping Cart</h4>
+          </div>
+          <div class="modal-body">
+            <p><span id="modalText"></span></p>
+            <button type="button" class="btn btn-success" onClick="purchaseItems()">Purchase Items</button>
+            <button type="button" class="btn btn-danger" onClick="clearCart()">Empty Cart</button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    
+    <h1>Recipes</h1>
+    <p style="text-indent: 20px;padding:50px;">Here we have compiled a collection of recipes. We are sharing with you, recipes passed down by our families, popular recipes that we have taken and modified, as well as sharing links to some of our personal favorites from around the web. In case there are any ingredients in our recipes that you don't have with you, just click the plus button and it will add the ingredient to your cart. Make sure to also check out our own personal brand of Delectably Delicious Kitchen Supplies<sup>TM</sup>. We hope you enjoy!</p>
+    <br>
+    
+
+    <a id="original"></a>
+    <h2>Original Family Recipes</h2>
+    
+    <!--Recipe Gallery-->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <a href="enchiladas.html" style="text-decoration:none;">
+              <img src="https://cdn1.bbcode0.com/uploads/2020/11/2/7af984d68d114222eb78a32d318c74aa-full.jpg" alt="Enchiladas" style="width:100%">
+              <div class="caption">
+                <p><strong>Chicken Enchiladas</strong></p>
+                <p>Learn how to make Mexican Enchiladas using our very own salsa recipe.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <a href="bizcochitos.html" style="text-decoration:none;">
+              <img src="https://cdn1.bbcode0.com/uploads/2020/11/2/5ded3afe7b5cd044f1e019bd4a254a5a-full.jpg" alt="Bizcochitos" style="width:100%">
+              <div class="caption">
+                <p><strong>Bizcochitos</strong></p>
+                <p>Learn how to make Bizcochitos using a unique new ingredient that helps it cook better.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <a href="tamales.html" style="text-decoration:none;">
+              <img src="https://cdn1.bbcode0.com/uploads/2020/11/1/61c4b220193bc05823a34eb450125420-full.jpg" alt="Cake 3" style="width:100%">
+              <div class="caption">
+                <p><strong>Pork Tamales</strong></p>
+                <p>Learn how to make Pork Tamales with our own salsa and maseca recipes.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    <a id="modified"></a>
+    <h2>Modified Recipes</h2>
+    
+    <!--Modified Recipe Gallery-->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <a href="arrozConLeche.html" style="text-decoration:none;">
+              <img src="https://cdn1.bbcode0.com/uploads/2020/11/2/411b6235f18ade079b984ff94f2d47a4-full.jpg" alt="Arroz Con Leche" style="width:100%;height:213px">
+              <div class="caption">
+                <p><strong>Arroz Con Leche</strong></p>
+                <p>Learn how to make a variation of Arroz Con Leche using reheated rice.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <a href="pancakes.html" style="text-decoration:none;">
+              <img src="https://cdn1.bbcode0.com/uploads/2020/11/2/f0dc54d06220e36e4eea5be83357b6c3-full.jpg" alt="Pancakes" style="width:100%;height:213px;">
+              <div class="caption">
+                <p><strong>Buttermilk Banana Pancakes</strong></p>
+                <p>Learn how to make Buttermilk Pancakes that have a delicious banana flavor.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <a href="brownies.html" style="text-decoration:none;">
+              <img src="https://cdn1.bbcode0.com/uploads/2020/11/2/5bcca4f3600f868f4aaccbf6457d0915-full.jpg" alt="Brownies" style="width:100%">
+              <div class="caption">
+                <p><strong>Mint Brownies</strong></p>
+                <p>Learn how to customize your brownies to your own personal taste.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!--Favorite Recipe Gallery-->
+    <a id="favorites"></a>
+    <h2>Our Personal Favorite Recipes</h2>
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <a href="https://www.the-girl-who-ate-everything.com/taco-pizza-rolls/" target="_blank" style="text-decoration:none;">
+              <!--Image courtesy of Ready Plan Save-->
+              <img src="https://www.readyplansave.com/wp-content/uploads/2019/04/TacoPizzaRolls.jpg" alt="Taco Pizza Rolls" style="width:100%">
+              <div class="caption">
+                <p><strong>Taco Pizza Rolls</strong></p>
+                <p>Check out this recipe that captures the savory flavors of a taco in a mini bite-sized roll.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <a href="https://www.bettycrocker.com/recipes/easy-pineapple-upside-down-cake/c4d3321d-fad9-41cb-8f29-8d91a4279b07" target="_blank" style="text-decoration:none;">
+              <!--Image courtesy of Saving Dessert-->
+              <img src="https://www.savingdessert.com/wp-content/uploads/2019/10/Pineapple-Upside-Down-Cake-2.jpg" alt="Pineapple Cake" style="width:100%">
+              <div class="caption">
+                <p><strong>Pineapple Upside Down Cake</strong></p>
+                <p>Check out this recipe that makes a delicious, traditional cake with tropical flavors.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <a href="https://www.cookingclassy.com/shrimp-scampi/" target="_blank" style="text-decoration:none;">
+              <!--Image courtesy of Big Oven-->
+              <img src="https://bigoven-res.cloudinary.com/image/upload/d_recipe-no-image.jpg,t_recipe-256/easy-shrimp-scampi-pasta-be8849.jpg" alt="Shrimp Scampi" style="width:100%;height:189px;">
+              <div class="caption">
+                <p><strong>Shrimp Scampi</strong></p>
+                <p>Check out this recipe that teaches you how to make a delicious shrimp pasta.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!--Links to external JavaScript file-->
+    <footer>
+      <script src="cart.js"></script>
+    </footer>
+    
+  </body>
+</html>

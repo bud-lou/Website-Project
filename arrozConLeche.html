@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>repl.it</title>
+    <link href="index.css" rel="stylesheet" type="text/css" />
+    <!--Google Fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Abril Fatface' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Aref Ruqaa' rel='stylesheet'>
+    <style>
+      body {
+        padding-top: 55px;
+      }
+      #navbarPic {
+        width: 41px;
+        height: 35px;
+        display: inline-block;
+      }
+      .badge {
+        background-color: red;
+      }
+      body {
+        background-color: #fffff5;
+        color: black;
+        font-family: 'Abhaya Libre';
+        font-size: 18px;
+      }
+      #mainImg {
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+        width: 95%;
+        padding-top: 20px;
+      }
+      .jumbotron {
+        background-color: #eee;
+        padding: 0px 25px;
+        text-align: 20px;
+      }
+      h1 {
+        font-family: 'Abril Fatface';
+        padding-bottom: 20px;
+        padding-left: 2.5%;
+        text-align: 0px;
+      }
+      .page-header {
+        width: 95%;
+        margin-right: auto;
+        margin-left: auto;
+      }
+      .list {
+        padding: 5px 15px;
+        text-indent: 20px;
+      }
+      #instructions {
+        padding: 5px 45px;
+      }
+      .glyphicon {
+        color: #646464;
+      }
+      .btn {
+        border: 1px solid #c2c2c2;
+      }
+      .btn-style {
+        background-color: #fffff5;
+        border: none;
+        outline: none !important;
+      }
+      #description {
+        text-indent: 20px;
+        padding: 5px 35px;
+      }
+      .tip {
+        border: 1px solid #eee;
+        padding: 8px;
+      }
+      .enjoy {
+        background-color: rgba(255,82,82,0.75);
+        color: white;
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+        padding-top: 30px;
+        margin-bottom: 0px;
+      }
+      .img-responsive {
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+        height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <!--Nav Bar-->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <!--Collapses nav bar when screen is small-->
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">
+            <img id="navbarPic" src="canvas(1).png">
+            <span style="display: inline-block;">Delectably Delicious</span>
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown active">
+              <!--Dropdown in nav bar-->
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Recipes<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="recipes.html">All Recipes</a></li>
+                <li class="divider"></li>
+                <li><a href="recipes.html#original">Original</a></li>
+                <li><a href="recipes.html#modified">Modified</a></li>
+                <li><a href="recipes.html#favorites">Favorites</a></li>
+              </ul>
+            </li>
+            <li><a href="kitchenSup.html">Kitchen Supplies</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a data-toggle="modal" data-target="#myModal">Cart  <span class="glyphicon glyphicon-shopping-cart"></span><span class="badge"><span id="badgeNum"></span></span></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+    <!--Shopping Cart Modal-->
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Shopping Cart</h4>
+          </div>
+          <div class="modal-body">
+            <p><span id="modalText"></span></p>
+            <button type="button" class="btn btn-success" onClick="purchaseItems()">Purchase Items</button>
+            <button type="button" class="btn btn-danger" onClick="location.href='index.html';clearCart()">Empty Cart & Return Home</button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    
+    <div class="jumbotron">
+      <img id="mainImg" src="arrozInCup.jpg" alt="Arroz Con Leche">
+      <h1>Arroz Con Leche</h1> 
+    </div>
+    <p id="description">Arroz Con Leche is a classic Mexican dish that is often served as a rice pudding. This take on the recipe allows you to incorporate the same flavors into rice that has already been cooked and can just be reheated in the microwave. This meal is often served as a sweet breakfast treat or as dessert. If you see any ingredients you don't own, just click the plus and it will be added to the cart. Click again to remove. Note that this will purchase a general amount/container of the product and not just the amount set in the ingredients list.</p>    
+    <div class="page-header"></div>
+    
+    
+    <div class="row">
+      <div class="col-sm-8 color">
+        <h3 class="list"><strong>Prep Time: </strong>3 minutes</h3>
+        <div class="list">
+          <h3><strong>Ingredients:</strong></h3>
+          <ul>
+            <li>
+              ~ <span id="rice"></span> cups of pre-cooked rice
+              <button type="button" class="btn btn-style" title="Add to cart" id="arrozCart1" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              ~ <span id="milk"></span> cup(s) of milk (mostly depends on personal preference)
+              <button type="button" class="btn btn-style" title="Add to cart" id="arrozCart2" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id="sugar"></span> spoonful(s) of white sugar
+              <button type="button" class="btn btn-style" title="Add to cart" id="arrozCart3" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id="cinnamon"></span> dashes of cinnamon
+              <button type="button" class="btn btn-style" title="Add to cart" id="arrozCart4" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id="raisins"></span> handful(s) of raisins (optional)
+              <button type="button" class="btn btn-style" title="Add to cart" id="arrozCart5" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+          </ul>
+        </div>
+        
+        <h3 class="list"><strong>Instructions:</strong></h3>
+        <div id="instructions">
+          <ol>
+            <li>Put the rice in a bowl and re-heat it for 1 minute in microwave</li>
+            <li>Add as much milk as desired</li>
+            <li>Mix in sugar</li>
+            <li>Add dashes of cinnamon on top</li>
+            <li>If desired, add raisins</li>
+          </ol>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <h3><strong>Portion Size:</strong></h3>
+        <div class="btn-group">
+          <input class="button btn" type="button" onClick="decreaseServing()" Value="-" />
+          <button type="button" class="btn disabled"><span id=serving></span></button>
+          <input class="button btn" type="button" onClick="increaseServing()" Value="+" />
+        </div>
+        <h6 style="padding-bottom:70px;">*This portion size makes about <span id="arrozConLeche"></span> cups of rice*</h6>
+        
+        <script>
+          var servingSize = 2;
+          document.getElementById("serving").innerHTML = servingSize;
+          document.getElementById("arrozConLeche").innerHTML = "2 1/2";
+          document.getElementById("rice").innerHTML = "2 1/2";
+          document.getElementById("milk").innerHTML = "1";
+          document.getElementById("sugar").innerHTML = "1";
+          document.getElementById("cinnamon").innerHTML = "3";
+          document.getElementById("raisins").innerHTML = "1";
+          
+          
+          function increaseServing() {
+            servingSize++;
+            ricePerServing = servingSize*1.25;
+            halfPerServing = servingSize*.5;
+            //fourth decimals to fractions
+            riceDecimal = ricePerServing - Math.floor(ricePerServing);
+            switch(riceDecimal) {
+              case 0.25:
+                riceFraction = "1/4";
+                break
+              case 0.5:
+                riceFraction = "1/2";
+                break
+              case 0.75:
+                riceFraction = "3/4";
+                break
+              default:
+                riceFraction = "";
+            }
+            riceAmount = Math.floor(ricePerServing) + " " + riceFraction;
+            //.5 to 1/2
+            halfWhole = Math.floor(halfPerServing)  
+            halfDecimal = halfPerServing - halfWhole;
+            switch(halfDecimal) {
+              case 0.5:
+                fraction = "1/2";
+                break
+              default:
+                fraction = "";
+            }
+            switch(halfWhole) {
+              case 0:
+                halfWhole = "";
+            }
+            ingredientAmount = halfWhole + " " + fraction;
+            
+            document.getElementById("serving").innerHTML = servingSize;
+            document.getElementById("arrozConLeche").innerHTML = riceAmount;
+            document.getElementById("rice").innerHTML = riceAmount;
+            document.getElementById("milk").innerHTML = ingredientAmount;
+            document.getElementById("sugar").innerHTML = ingredientAmount;
+            document.getElementById("cinnamon").innerHTML = Math.round(servingSize*1.5);
+            document.getElementById("raisins").innerHTML = ingredientAmount;
+          }
+          
+          function decreaseServing() {
+            if (servingSize > 1) {
+              servingSize--;
+              ricePerServing = servingSize*1.25;
+              halfPerServing = servingSize*.5;
+              //fourth decimals to fractions
+              riceDecimal = ricePerServing - Math.floor(ricePerServing);
+              switch(riceDecimal) {
+                case 0.25:
+                  riceFraction = "1/4";
+                  break
+                case 0.5:
+                  riceFraction = "1/2";
+                  break
+                case 0.75:
+                  riceFraction = "3/4";
+                  break
+                default:
+                  riceFraction = "";
+              }
+              riceAmount = Math.floor(ricePerServing) + " " + riceFraction;
+              //.5 to 1/2
+              halfWhole = Math.floor(halfPerServing)  
+              halfDecimal = halfPerServing - halfWhole;
+              switch(halfDecimal) {
+                case 0.5:
+                  fraction = "1/2";
+                  break
+                default:
+                  fraction = "";
+              }
+              switch(halfWhole) {
+                case 0:
+                  halfWhole = "";
+              }
+              ingredientAmount = halfWhole + " " + fraction;
+              
+              document.getElementById("serving").innerHTML = servingSize;
+              document.getElementById("arrozConLeche").innerHTML = riceAmount;
+              document.getElementById("rice").innerHTML = riceAmount;
+              document.getElementById("milk").innerHTML = ingredientAmount;
+              document.getElementById("sugar").innerHTML = ingredientAmount;
+              document.getElementById("cinnamon").innerHTML = Math.round(servingSize*1.5);
+              document.getElementById("raisins").innerHTML = ingredientAmount;
+            }
+          }
+          
+
+        </script>
+
+        <div class= "tip">
+          <h3>Pro Tip</h3>
+          <p>If you want this recipe to better mimic the traditional rice pudding. Use a rice cooker to cook the rice with the milk, cinnamon and sugar inside. That way the flavors will be baked into the rice for richer flavors.</p>
+        </div>
+      </div>
+      <!--Empty div-->
+      <div class="col-sm-1"></div>
+    </div>
+    
+    <div class="jumbotron enjoy">
+      <img class="img-responsive" src="riceInCup2.jpg" alt="enjoy">
+      <h1>Enjoy!</h1> 
+    </div>
+    
+    <!--Links to external JavaScript file-->
+    <footer>
+      <script src="cart.js"></script>
+    </footer>
+    
+  </body>
+</html>

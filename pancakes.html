@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>repl.it</title>
+    <link href="index.css" rel="stylesheet" type="text/css" />
+    <!--Google Fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Abril Fatface' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Aref Ruqaa' rel='stylesheet'>
+    <style>
+      #navbarPic {
+        width: 41px;
+        height: 35px;
+        display: inline-block;
+      }
+      .badge {
+        background-color: red;
+      }
+      body {
+        background-color: #fffff5;
+        color: black;
+        font-family: 'Abhaya Libre';
+        font-size: 18px;
+        padding-top: 55px;
+      }
+      #mainImg {
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+        width: 95%;
+        padding-top: 20px;
+      }
+      .jumbotron {
+        background-color: #eee;
+        padding: 0px 25px;
+        text-align: 20px;
+      }
+      h1 {
+        font-family: 'Abril Fatface';
+        padding-bottom: 20px;
+        padding-left: 2.5%;
+        text-align: 0px;
+      }
+      .page-header {
+        width: 95%;
+        margin-right: auto;
+        margin-left: auto;
+      }
+      .list {
+        padding: 5px 15px;
+        text-indent: 20px;
+      }
+      #instructions {
+        padding: 5px 45px;
+      }
+      .glyphicon {
+        color: #646464;
+      }
+      .btn {
+        border: 1px solid #c2c2c2;
+      }
+      .btn-style {
+        background-color: #fffff5;
+        border: none;
+        outline: none !important;
+      }
+      #description {
+        text-indent: 20px;
+        padding: 5px 35px;
+      }
+      .tip {
+        border: 1px solid #eee;
+        padding: 8px;
+      }
+      .enjoy {
+        background-color: rgba(255,82,82,0.75);
+        color: white;
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+        padding-top: 30px;
+        margin-bottom: 0px;
+      }
+      .img-responsive {
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <!--Nav Bar-->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <!--Collapses nav bar when screen is small-->
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">
+            <img id="navbarPic" src="canvas(1).png">
+            <span style="display: inline-block;">Delectably Delicious</span>
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown active">
+              <!--Dropdown in nav bar-->
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Recipes<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="recipes.html">All Recipes</a></li>
+                <li class="divider"></li>
+                <li><a href="recipes.html#original">Original</a></li>
+                <li><a href="recipes.html#modified">Modified</a></li>
+                <li><a href="recipes.html#favorites">Favorites</a></li>
+              </ul>
+            </li>
+            <li><a href="kitchenSup.html">Kitchen Supplies</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a data-toggle="modal" data-target="#myModal">Cart  <span class="glyphicon glyphicon-shopping-cart"></span><span class="badge"><span id="badgeNum"></span></span></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+    <!--Shopping Cart Modal-->
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Shopping Cart</h4>
+          </div>
+          <div class="modal-body">
+            <p><span id="modalText"></span></p>
+            <button type="button" class="btn btn-success" onClick="purchaseItems()">Purchase Items</button>
+            <button type="button" class="btn btn-danger" onClick="location.href='index.html';clearCart()">Empty Cart & Return Home</button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    
+    <div class="jumbotron">
+      <img id="mainImg" src="https://cdn1.bbcode0.com/uploads/2020/11/3/93fe758954173c36ce7d588ad7cc0420-full.jpg" alt="Pancakes">
+      <h1>Banana Buttermilk Pancakes</h1> 
+    </div>
+    <p id="description">These Banana Buttermilk Pancakes are a twist on the <a href="https://www.allrecipes.com/recipe/233920/tender-and-easy-buttermilk-waffles/" target="_blank">All Recipes Buttermilk Pancakes Recipe</a>. This version teaches you how to make your own buttermilk and adds banana for some more flavor. If you see any ingredients you don't own, just click the plus and it will be added to the cart. Click again to remove. Note that this will purchase a general amount/container of the product and not just the amount set in the ingredients list.</p>    
+    <div class="page-header"></div>
+    
+    
+    <div class="row">
+      <div class="col-sm-8 color">
+        <h3 class="list"><strong>Prep Time: </strong>15 minutes</h3>
+        <div class="list">
+          <h3><strong>Ingredients:</strong></h3>
+          <ul>
+            <li>
+              <span id="milk"></span> scant cup(s) of milk
+              <button type="button" class="btn btn-style" title="Add to cart" id="pancakeCart1" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id="vinegar"></span> <abbr title="tablespoon(s)">tbsp(s)</abbr> of vinegar
+              <button type="button" class="btn btn-style" title="Add to cart" id="pancakeCart2" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id="flour"></span> cup(s) of flour
+              <button type="button" class="btn btn-style" title="Add to cart" id="pancakeCart3" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id="sugar"></span> <abbr title="tablespoon(s)">tbsp(s)</abbr> of white sugar
+              <button type="button" class="btn btn-style" title="Add to cart" id="pancakeCart4" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id="bakingPowder"></span> <abbr title="teaspoon(s)">tsp(s)</abbr> of baking powder
+              <button type="button" class="btn btn-style" title="Add to cart" id="pancakeCart5" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id="bakingSoda"></span> <abbr title="teaspoon(s)">tsp(s)</abbr> of baking soda
+              <button type="button" class="btn btn-style" title="Add to cart" id="pancakeCart6" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id="salt"></span> <abbr title="teaspoon(s)">tsp(s)</abbr> of salt
+              <button type="button" class="btn btn-style" title="Add to cart" id="pancakeCart7" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id="butter"></span> cup(s) of butter
+              <button type="button" class="btn btn-style" title="Add to cart" id="pancakeCart8" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id="banana"></span> <span id="partOfBanana"></span> banana<span id="allOfBanana"></span>
+              <button type="button" class="btn btn-style" title="Add to cart" id="pancakeCart9" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+            <li>
+              <span id="vanilla"></span> <abbr title="teaspoon(s)">tsp(s)</abbr> of vanilla extract
+              <button type="button" class="btn btn-style" title="Add to cart" id="pancakeCart10" onClick="iconChange(this,this.id)"><span class="glyphicon glyphicon-plus"></span></button>
+            </li>
+          </ul>
+        </div>
+        
+        <h3 class="list"><strong>Instructions:</strong></h3>
+        <div id="instructions">
+          <ol>
+            <li>Use a measuring cup to add milk and vinegar together and let sit for eight minutes - stir every now and then to make buttermilk</li>
+            <li>During this time, mix flour, sugar, baking powder, baking soda and salt together in a large bowl</li>
+            <li>Use a smaller bowl to heat butter in microwave for <strong>30 seconds</strong></li>
+            <li>After the buttermilk is ready, mix it together with the butter</li>
+            <li>Mash up the banana and add it to the buttermilk mixture</li>
+            <li>Add the liquid mixture into the big bowl with solid ingredients and mix together until the batter is slightly lumpy</li>
+            <li>Add vanilla extract to the mixture</li>
+            <li>The pancake mixture is now ready to be cooked</li>
+          </ol>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <h3><strong>Portion Size:</strong></h3>
+        <div class="btn-group">
+          <input class="button btn" type="button" onClick="decreaseServing()" Value="-" />
+          <button type="button" class="btn disabled"><span id=serving></span></button>
+          <input class="button btn" type="button" onClick="increaseServing()" Value="+" />
+        </div>
+        <h6 style="padding-bottom:70px;">*This portion size makes about <span id="pancake1"></span>-<span id="pancake2"></span> pancakes depending on their size*</h6>
+        
+        <script>
+          var servingSize = 2;
+          document.getElementById("serving").innerHTML = servingSize;
+          document.getElementById("pancake1").innerHTML = "7";
+          document.getElementById("pancake2").innerHTML = "9";
+          document.getElementById("milk").innerHTML = "2";
+          document.getElementById("vinegar").innerHTML = "2";
+          document.getElementById("flour").innerHTML = "2";
+          document.getElementById("sugar").innerHTML = "2";
+          document.getElementById("bakingPowder").innerHTML = "2";
+          document.getElementById("bakingSoda").innerHTML = "1";
+          document.getElementById("salt").innerHTML = "1/2";
+          document.getElementById("butter").innerHTML = "1/3";
+          document.getElementById("banana").innerHTML = "3/4 of a";
+          document.getElementById("vanilla").innerHTML = "1";
+          
+          
+          function increaseServing() {
+            servingSize++;
+            halfPerServing = servingSize*.5;
+            fourthPerServing = servingSize*.25;
+            sixthPerServing = 1/6*servingSize;
+            bananaPerServing = 3/8*servingSize;
+            //Turning decimals into fraction amounts
+            halfDecimal = halfPerServing - Math.floor(halfPerServing); // .5 to 1/2
+            switch(halfDecimal) {
+              case 0.5:
+                halfFraction = "1/2";
+                break
+              default:
+                halfFraction = "";
+            }
+            ingredientAmount = Math.floor(halfPerServing) + " " + halfFraction;
+            //fourth decimals to fractions
+            fourthWhole = Math.floor(fourthPerServing);
+            fourthDecimal = fourthPerServing - fourthWhole;
+            switch(fourthDecimal) {
+              case 0.25:
+                fourthFraction = "1/4";
+                break
+              case 0.5:
+                fourthFraction = "1/2";
+                break
+              case 0.75:
+                fourthFraction = "3/4";
+                break
+              default:
+                fourthFraction = "";
+            }
+            switch(fourthWhole) {
+              case 0:
+                fourthWhole = "";
+            }
+            saltAmount = fourthWhole + " " + fourthFraction;
+            // sixth fractions to decimals
+            sixthWhole = Math.floor(sixthPerServing);
+            sixthDecimal = sixthPerServing - sixthWhole;
+            if (sixthDecimal > 0 && sixthDecimal < 0.3) {
+              sixthFraction = "1/6";
+            } else if (sixthDecimal > 0.3 && sixthDecimal < 0.5) {
+              sixthFraction = "1/3";
+            } else if (sixthDecimal > 0.4 && sixthDecimal < 0.6) {
+              sixthFraction = "1/2";
+            } else if (sixthDecimal > 0.6 && sixthDecimal < 0.8) {
+              sixthFraction = "2/3";
+            } else if (sixthDecimal > 0.8) {
+              sixthFraction = "5/6";
+            } else {
+              sixthFraction = "";
+            }
+            switch(sixthWhole) {
+              case 0:
+              sixthWhole = "";
+            }
+            butterAmount = sixthWhole + " " + sixthFraction;
+            // banana fractions to decimals
+            bananaWhole = Math.floor(bananaPerServing);
+            bananaDecimal = bananaPerServing - bananaWhole;
+            if (bananaDecimal > 0 && bananaDecimal < 0.3) {
+              bananaFraction = "1/4";
+              partialBanana = "of a";
+              entireBanana = "";
+            } else if (bananaDecimal > 0.3 && bananaDecimal < 0.6) {
+              bananaFraction = "1/2";
+              partialBanana = "of a";
+              entireBanana = "";
+            } else if (bananaDecimal > 0.6 && bananaDecimal < 0.8) {
+              bananaFraction = "3/4";
+              partialBanana = "of a";
+              entireBanana = "";
+            } else if (bananaDecimal > 0.8) {
+              bananaWhole += 1;
+              bananaFraction = "";
+              partialBanana = "";
+              entireBanana = "(s)";
+            } else {
+              bananaFraction = "";
+              partialBanana = "";
+              entireBanana = "(s)";
+            }
+            switch(bananaWhole) {
+              case 0:
+                bananaWhole = "";
+            }
+            bananaAmount = bananaWhole + " " + bananaFraction;
+            
+            document.getElementById("serving").innerHTML = servingSize;
+            document.getElementById("pancake1").innerHTML = Math.floor(servingSize*3.5);
+            document.getElementById("pancake2").innerHTML = Math.floor(servingSize*4.5);
+            document.getElementById("pancake1").innerHTML = "7";
+            document.getElementById("pancake2").innerHTML = "9";
+            document.getElementById("milk").innerHTML = servingSize;
+            document.getElementById("vinegar").innerHTML = servingSize;
+            document.getElementById("flour").innerHTML = servingSize;
+            document.getElementById("sugar").innerHTML = servingSize;
+            document.getElementById("bakingPowder").innerHTML = servingSize;
+            document.getElementById("bakingSoda").innerHTML = ingredientAmount;
+            document.getElementById("salt").innerHTML = saltAmount;
+            document.getElementById("butter").innerHTML = butterAmount;
+            document.getElementById("banana").innerHTML = bananaAmount;
+            document.getElementById("partOfBanana").innerHTML = partialBanana;
+            document.getElementById("allOfBanana").innerHTML = entireBanana;
+            document.getElementById("vanilla").innerHTML = ingredientAmount;
+          }
+          
+          function decreaseServing() {
+            if (servingSize > 1) {
+              servingSize--;
+              halfPerServing = servingSize*.5;
+              fourthPerServing = servingSize*.25;
+              sixthPerServing = 1/6*servingSize;
+              bananaPerServing = 3/8*servingSize;
+              //Turning decimals into fraction amounts
+              halfWhole = Math.floor(halfPerServing)  //.5 to 1/2
+              halfDecimal = halfPerServing - halfWhole;
+              switch(halfDecimal) {
+                case 0.5:
+                  fraction = "1/2";
+                  break
+                default:
+                  fraction = "";
+              }
+              switch(halfWhole) {
+                case 0:
+                  halfWhole = "";
+              }
+              ingredientAmount = halfWhole + " " + fraction;
+              //fourth decimals to fractions
+              fourthWhole = Math.floor(fourthPerServing);
+              fourthDecimal = fourthPerServing - fourthWhole;
+              switch(fourthDecimal) {
+                case 0.25:
+                  fourthFraction = "1/4";
+                  break
+                case 0.5:
+                  fourthFraction = "1/2";
+                  break
+                case 0.75:
+                  fourthFraction = "3/4";
+                  break
+                default:
+                  fourthFraction = "";
+              }
+              switch(fourthWhole) {
+                case 0:
+                  fourthWhole = "";
+              }
+              saltAmount = fourthWhole + " " + fourthFraction;
+              // sixth fractions to decimals
+              sixthWhole = Math.floor(sixthPerServing);
+              sixthDecimal = sixthPerServing - sixthWhole;
+              if (sixthDecimal > 0 && sixthDecimal < 0.3) {
+                sixthFraction = "1/6";
+              } else if (sixthDecimal > 0.3 && sixthDecimal < 0.5) {
+                sixthFraction = "1/3";
+              } else if (sixthDecimal > 0.4 && sixthDecimal < 0.6) {
+                sixthFraction = "1/2";
+              } else if (sixthDecimal > 0.6 && sixthDecimal < 0.8) {
+                sixthFraction = "2/3";
+              } else if (sixthDecimal > 0.8) {
+                sixthFraction = "5/6";
+              } else {
+                sixthFraction = "";
+              }
+              switch(sixthWhole) {
+                  case 0:
+                    sixthWhole = "";
+                }
+              butterAmount = sixthWhole + " " + sixthFraction;
+              // banana fractions to decimals
+              bananaWhole = Math.floor(bananaPerServing);
+              bananaDecimal = bananaPerServing - bananaWhole;
+              if (bananaDecimal > 0 && bananaDecimal < 0.3) {
+                bananaFraction = "1/4";
+                partialBanana = "of a";
+                entireBanana = "";
+              } else if (bananaDecimal > 0.3 && bananaDecimal < 0.6) {
+                bananaFraction = "1/2";
+                partialBanana = "of a";
+                entireBanana = "";
+              } else if (bananaDecimal > 0.6 && bananaDecimal < 0.8) {
+                bananaFraction = "3/4";
+                partialBanana = "of a";
+                entireBanana = "";
+              } else if (bananaDecimal > 0.8) {
+                bananaWhole += 1;
+                bananaFraction = "";
+                partialBanana = "";
+                entireBanana = "(s)";
+              } else {
+                bananaFraction = "";
+                partialBanana = "";
+                entireBanana = "(s)";
+              }
+              switch(bananaWhole) {
+                case 0:
+                bananaWhole = "";
+              }
+              bananaAmount = bananaWhole + " " + bananaFraction;
+              
+              document.getElementById("serving").innerHTML = servingSize;
+              document.getElementById("pancake1").innerHTML = Math.floor(servingSize*3.5);
+              document.getElementById("pancake2").innerHTML = Math.floor(servingSize*4.5);
+              document.getElementById("milk").innerHTML = servingSize;
+              document.getElementById("vinegar").innerHTML = servingSize;
+              document.getElementById("flour").innerHTML = servingSize;
+              document.getElementById("sugar").innerHTML = servingSize;
+              document.getElementById("bakingPowder").innerHTML = servingSize;
+              document.getElementById("bakingSoda").innerHTML = ingredientAmount;
+              document.getElementById("salt").innerHTML = saltAmount;
+              document.getElementById("butter").innerHTML = butterAmount;
+              document.getElementById("banana").innerHTML = bananaAmount;
+              document.getElementById("partOfBanana").innerHTML = partialBanana;
+              document.getElementById("allOfBanana").innerHTML = entireBanana;
+              document.getElementById("vanilla").innerHTML = ingredientAmount;
+            }
+          }
+          
+
+        </script>
+        
+        <div class= "tip">
+          <h3>Pro Tip</h3>
+          <p>If you don't have vinegar at home for the buttermilk, you can always use lemon juice. And if you want some more or alternate flavors, you can add fruits and even some cinnamon into the mixture.</p>
+        </div>
+        </div>
+      <!--Empty div-->
+      <div class="col-sm-1"></div>
+    </div>
+    
+    <div class="jumbotron enjoy">
+      <img class="img-responsive" src="https://cdn1.bbcode0.com/uploads/2020/11/3/a0f1f730b2630e6940ee35b18e4bacef-full.jpg" alt="enjoy">
+      <h1>Enjoy!</h1> 
+    </div>
+    
+    <!--Links to external JavaScript file-->
+    <footer>
+      <script src="cart.js"></script>
+    </footer>
+    
+  </body>
+</html>
